@@ -1,0 +1,78 @@
+// theme.scss
+// 
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,100,300);
+@import 'reset';
+
+
+// Global style
+
+html, body {
+  height: 100%;
+}
+
+body {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+
+  background:
+    -webkit-linear-gradient(45deg, hsla(182, 99%, 49%, 1) 0%, hsla(182, 99%, 49%, 0) 70%),
+    -webkit-linear-gradient(315deg, hsla(210, 82%, 73%, 1) 10%, hsla(210, 82%, 73%, 0) 80%),
+    -webkit-linear-gradient(225deg, hsla(182, 100%, 52%, 1) 10%, hsla(182, 100%, 52%, 0) 80%),
+    -webkit-linear-gradient(135deg, hsla(137, 84%, 85%, 1) 100%, hsla(137, 84%, 85%, 0) 70%);
+  background:
+    linear-gradient(45deg, hsla(182, 99%, 49%, 1) 0%, hsla(182, 99%, 49%, 0) 70%),
+    linear-gradient(135deg, hsla(210, 82%, 73%, 1) 10%, hsla(210, 82%, 73%, 0) 80%),
+    linear-gradient(225deg, hsla(182, 100%, 52%, 1) 10%, hsla(182, 100%, 52%, 0) 80%),
+    linear-gradient(315deg, hsla(137, 84%, 85%, 1) 100%, hsla(137, 84%, 85%, 0) 70%);
+
+  background-attachment: fixed;
+
+  color: $dark;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 100;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 2.2rem;
+  color: $blue-600;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+
+.ui-fab.float-fab {
+  $margin-fab-floated: 25px;
+  $width-fab: 40px; 
+  position: fixed;
+  z-index: 99;
+
+  &.bottom {
+    bottom: $margin-fab-floated;
+  }
+  &.right {
+    right: $margin-fab-floated;
+  }
+  &.right-1 {
+    right: $margin-fab-floated * 2 + $width-fab;
+  }
+}

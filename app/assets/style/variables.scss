@@ -1,0 +1,78 @@
+$blue-50: #E1F5FE;
+$blue-100: #B3E5FC;
+$blue-200: #81D4FA;
+$blue-300: #4FC3F7;
+$blue-400: #29B6F6;
+$blue-500: #03A9F4;
+$blue-600: #039BE5;
+$blue-700: #0288D1;
+$blue-800: #0277BD;
+$blue-900: #01579B;
+$blue-A100: #80D8FF;
+$blue-A200: #40C4FF;
+$blue-A400: #00B0FF;
+$blue-A700: #0091EA;
+
+$blue-grey-50: #ECEFF1;
+$blue-grey-100: #CFD8DC;
+$blue-grey-200: #B0BEC5;
+$blue-grey-300: #90A4AE;
+$blue-grey-400: #78909C;
+$blue-grey-500: #607D8B;
+$blue-grey-600: #546E7A;
+$blue-grey-700: #455A64;
+$blue-grey-800: #37474F;
+$blue-grey-900: #263238;
+
+$primary-color: #319CD5;
+$secondary-color: #F9B224;
+$white: #ffffff;
+$dark: $blue-grey-600;
+
+
+/// Computes a top-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function top-shadow($depth) {
+  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+  $color: rgba(black, nth(.12 .16 .19 .25 .30, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth) {
+  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+  $blur: nth(1 3 3 5 6, $depth) * 4px;
+  $color: rgba(black, nth(.24 .23 .23 .22 .22, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/// Gives a card depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
+@mixin card($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    box-shadow: bottom-shadow($depth), top-shadow($depth);  
+  }
+}
+
+@mixin text-shadow($depth) {
+  @if $depth < 1 {
+    text-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    text-shadow: bottom-shadow($depth), top-shadow($depth);  
+  }
+}

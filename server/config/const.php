@@ -62,10 +62,13 @@ define('TLD', substr(HOST, strrpos(HOST, '.')+1));
 
 if (ENV === 'local') {
     define('URI', 'http://local.domine.tld');
+    define('APP_ORIGIN', URI.':8888');
 } elseif (ENV === 'dev') {
     define('URI', 'http://dev.domine.tld');
+    define('APP_ORIGIN', URI);
 } else {
     define('URI', 'http://domine.tld');
+    define('APP_ORIGIN', URI);
 }
 
 /*

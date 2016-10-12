@@ -12,10 +12,10 @@ return [
     ],
     'notFoundHandler' => function ($c) {
         return function ($request, $response) use ($c) {
-            $c['response']
+            return $c['response']
                 ->withStatus(404)
-                ->withHeader('Content-Type', 'text/html');
-            return $c->view->render($response, 'errors/404.html');
+                ->withHeader('Content-Type', 'text/html')
+                ->write('Manabu - 404 - Page not found');
         };
     },
     'log' => function () {

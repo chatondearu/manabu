@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    props: {}
+    name: 'bui-menu-item'
   }
 </script>
 

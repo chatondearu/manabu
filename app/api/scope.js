@@ -1,24 +1,9 @@
 import _ from 'lodash'
+import Vue from 'vue'
 
 const genTimeout = () => {
   return _.random(0, 500)
 }
-
-// let later = {
-//   '私はロマン・リエナーです。': 'je suis Romain Lienard.', // lecon 1
-//   'マリオンは学生じゃありません。': 'Marion n\'est pas étudiante.', // lecon 1
-//   'マリオンは会社員ですか。': 'Marion est elle salariée?',  // lecon 1
-//   '私も会社員です。': 'je suis aussi salarié.', // lecon 1
-//   'これは辞書です。': 'ceci est un dictionnaire.', // lecon 2
-//   'これはパソコンの本です。': 'ceci est un livre sur l\'ordinateur.', // lecon 2
-//   'それは私の傘です。': 'c\'est mon parapluie.', // lecon 2
-//   'この傘は私のです。': 'ce parapluie est à moi.', // lecon 2
-//   'それは何の雑誌ですか？ 自動車の雑誌です。': 'cela magazine est sur quel sujet? c\'est un magazine sur les voitures.', // lecon 2
-//   'あれはだれのかばんですか？ しおりのかばんです。': 'à qui est ce sac? c\'est le sac de Shiori.', // lecon 2
-//   'これからお世話になります。': 'Enchanté | J\'espere pouvoir compter sur votre aide.', // lecon 2 expression dans la premiere conversation
-//   'どうぞよろしくお願いします。': 'Ravi de vous rencontrer.' // lecon 2 expression dans la premiere conversation
-// }
-// later = later + 1
 
 let _user = {
   id: 0,
@@ -279,7 +264,19 @@ export default {
       updatedAt: 0,
       deletedAt: 0
     })
-    setTimeout(() => cb(_.cloneDeep(_decks)), genTimeout())
+    Vue.http.post('decks', {
+      title: newDeck.title,
+      description: newDeck.description,
+      tags: newDeck.tags || []
+    }).then(() => {
+      // success
+      console.log('request success.')
+      setTimeout(() => cb(_.cloneDeep(_decks)), genTimeout())
+    }, () => {
+      // error
+      console.log('an error was occured.')
+      setTimeout(() => cb(_.cloneDeep(_decks)), genTimeout())
+    })
   },
   updateDeck (overrideDeck, cb) {
     _decks = _.map(_decks, (deck) => {

@@ -61,13 +61,13 @@ if (isset($_SERVER['HTTP_HOST'])) {
 define('TLD', substr(HOST, strrpos(HOST, '.')+1));
 
 if (ENV === 'local') {
-    define('URI', 'http://local.domine.tld');
+    define('URI', 'http://local.manabu.fr');
     define('APP_ORIGIN', URI.':8888');
 } elseif (ENV === 'dev') {
-    define('URI', 'http://dev.domine.tld');
+    define('URI', 'http://dev.manabu.fr');
     define('APP_ORIGIN', URI);
 } else {
-    define('URI', 'http://domine.tld');
+    define('URI', 'http://manabu.fr');
     define('APP_ORIGIN', URI);
 }
 

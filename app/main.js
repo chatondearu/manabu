@@ -15,6 +15,8 @@ Vue.use(Vuex)
 // Vue.use(Keen)
 // Vue.use(Validator)
 
+Vue.http.options.root = process.env.API_ROOT + '/api/v1'
+
 const router = new Router({
   routes: routesMap,
   mode: 'history',

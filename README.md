@@ -31,5 +31,38 @@ php composer.phar install
 
 ```
 
+## Nginx configuration
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```nginx
+server {
+  listen       80;
+  server_name  localhost;
+
+  root        /var/www/manabu/public;
+
+  index index.html;
+  charset utf-8;
+
+  location ^~ /api {
+      alias /var/www/manabu/server;
+
+      ## duplicate the alias is hack with nginx to prevent bugs
+      try_files $uri $uri/ /api/api/index.php?$query_string; 
+
+      location ~ \.php$ {
+          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+          fastcgi_pass   127.0.0.1:9000;
+          fastcgi_param SCRIPT_FILENAME $request_filename;
+          fastcgi_index index.php;
+          include fastcgi_params;
+      }
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  access_log "/var/log/nginx/manabu_access.log" combined;
+  error_log "/var/log/nginx/manabu_errors.log" debug;
+}
+```

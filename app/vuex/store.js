@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import prefs from './modules/prefs'
 import cards from './modules/cards'
 import decks from './modules/decks'
+import tags from './modules/tags'
 import user from './modules/user'
 
 Vue.use(Vuex)
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     prefs,
     cards,
     decks,
+    tags,
     user
   },
   strict: true

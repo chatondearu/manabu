@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Autoload
-require_once '../../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 // Script Included
 include_once 'config/const.php';

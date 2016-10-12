@@ -1,21 +1,25 @@
 <template>
-  <div class="deck row row-align-middle">
+  <div class="deck row row-align-middle" @click="$emit('select::deck', item.id)">
     <div class="gr-grow">
-      <ui-icon icon="folder"></ui-icon>
+      <bui-icon icon="folder"></bui-icon>
     </div>
     <div class="gr-grow">
       <p class="title">{{ item.title }}</p>
       <p class="description">{{ item.description }}</p>
-      <p class="total">24 cards</p>
+      <p class="total">
+        <tag v-for="tagId in item.tags" :tag-id="tagId"></tag>
+        24 cards
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-import { UiIcon, UiIconButton } from 'keen-ui'
+import { BuiIcon } from '~/app/components/utils/index'
+import Tag from './tags/Tag'
 
 export default {
-  ready () {},
+  name: 'deck',
   props: {
     item: {
       required: true,
@@ -24,6 +28,7 @@ export default {
           id: null,
           title: '',
           description: '',
+          tags: [],
           groupId: null
         }
       }
@@ -33,14 +38,14 @@ export default {
     show (id) {}
   },
   components: {
-    UiIcon,
-    UiIconButton
+    BuiIcon,
+    Tag
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import './../../assets/style/variables.scss';
+@import '~assets/style/variables.scss';
 
 .deck {
   width: auto;

@@ -1,3 +1,4 @@
+import scope from '~/app/api/scope'
 import {
   // ADD_CARD,
   RECEIVE_CARDS,
@@ -26,7 +27,41 @@ const mutations = {
   }
 }
 
+const actions = {
+  addCard: ({ commit, state, rootState }, card) => {
+    commit(CARDS_IN_LOADING)
+    scope.addCard(card, rootState.decks.currentDeckId, cards => {
+      commit(RECEIVE_CARDS, cards)
+    })
+  },
+  updateCard: ({ commit }, card) => {
+    // commit(types.CARDS_IN_LOADING)
+    scope.updateCard(card, cards => {
+      commit(RECEIVE_CARDS, cards)
+    })
+  },
+  deleteCard: ({ commit }, card) => {
+    // commit(types.CARDS_IN_LOADING)
+    scope.deleteCard(card, cards => {
+      commit(RECEIVE_CARDS, cards)
+    })
+  },
+  getCards: ({ commit, state, rootState }) => {
+    commit(CARDS_IN_LOADING)
+    scope.getCards(rootState.decks.currentDeckId, cards => {
+      commit(RECEIVE_CARDS, cards)
+    })
+  },
+  getAllCards: ({ commit }) => {
+    commit(CARDS_IN_LOADING)
+    scope.getAllCards(cards => {
+      commit(RECEIVE_CARDS, cards)
+    })
+  }
+}
+
 export default {
   state,
-  mutations
+  mutations,
+  actions
 }

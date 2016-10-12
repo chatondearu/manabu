@@ -1,42 +1,19 @@
 <template>
   <div class="home row row-align-around row-align-middle">
-    <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
+    <router-link :to="{ path:'/decks' }" class="navigation-box">
+      <bui-icon icon="inbox"></bui-icon>
       Decks
     </a>
-    <!-- <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
-    </a>
-    <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
-    </a>
-    <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
-    </a>
-    <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
-    </a>
-    <a href="/decks" class="navigation-box">
-      <ui-icon icon="inbox"></ui-icon>
-    </a> -->
   </div>
 </template>
 
 <script>
-import { UiIcon } from 'keen-ui'
-import { cardModel } from './../models/models'
-// import DecksList from './decks/List'
-
-console.log(cardModel)
+import { BuiIcon } from '~/app/components/utils/index'
 
 export default {
-  vuex: {},
+  name: 'home',
   components: {
-    UiIcon
-  },
-  data () {
-    return {
-    }
+    BuiIcon
   }
 }
 </script>
@@ -54,7 +31,7 @@ $nav-box-size: 165px;
     border-radius: 5px;
     @include card(3);
 
-    .ui-icon {
+    .bui-icon {
       font-size: 4rem;
     }
   }

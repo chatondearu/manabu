@@ -8,10 +8,8 @@
 // import { getCards } from './../../vuex/actions'
 
 export default {
-  vuex: {
-    getters: {
-      user: ({ user }) => user.profile
-    }
+  computed: {
+    user () { return this.$store.state.user.profile }
   },
   components: {},
   created () {

@@ -1,80 +1,79 @@
 <template>
   <div class="card">
-    <resource v-if="item.resourceUrl" :url="item.resourceUrl"></resource>
+    <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="row">
       <p class="first front gr-10">{{ item.front }}
-        <ui-icon-button type="flat" 
-                color="default" 
-                icon="volume_up" 
-                @click="spell('front')"></ui-fab>
+        <bui-icon-button icon="volume-high" 
+          @click.native="spell('front')"></bui-icon-button>
       </p>
       <p class="second back gr-10">{{ item.back }}
-        <ui-icon-button type="flat" 
-                color="default" 
-                icon="volume_up" 
-                @click="spell('back')"></ui-fab>
+        <bui-icon-button icon="volume-high" 
+          @click.native="spell('back')"></bui-icon-button>
       </p>
       <div class="gr-4">
-        <ui-icon-button type="flat" icon="more_vert" has-dropdown-menu show-menu-icons :menu-options="[
-          {
-            id: 0,
-            icon: 'create',
-            text: 'Edit Card'
-          },
-          {
-            id: 1,
-            icon: 'delete',
-            text: 'Remove Card'
-          }
-        ]" @menu-option-selected="onSelectOption"></ui-icon-button>
+        <bui-icon-button icon="dots-vertical" use-dropdown>
+          <bui-menu>
+            <bui-menu-item>
+              <a @click="showUpdateCard = true">Edit Card</a>
+            </bui-menu-item>
+            <bui-menu-item>
+              <a @click="showRemoveCard = true">Remove Card</a>
+            </bui-menu-item>
+          </bui-menu>
+        </bui-icon-button>
       </div>
     </div>
-    <div>
-      <p class="note"><small><ui-icon icon="format_quote"></ui-icon>{{ item.note }}</small></p>
+    <div v-if="showNote">
+      <p class="note">
+        <small>
+          <bui-icon icon="format-quote"></bui-icon>
+          {{ item.note }}
+        </small>
+      </p>
     </div>
 
-    <ui-modal :show.sync="showUpdateCard" header="Update Card">
-      <ui-textbox name="front" :value.sync="override.front" placeholder="Front"></ui-textbox>
-      <ui-textbox name="back" :value.sync="override.back" placeholder="Back"></ui-textbox>
-      <ui-textbox name="back" :value.sync="override.resourceUrl" placeholder="Resource URL"></ui-textbox>
-      <ui-textbox name="note" :value.sync="override.note" placeholder="Add a Note" :multi-line="true" :rows="3"></ui-textbox>
-      <div slot="footer">
-        <ui-button @click="showUpdateCard = false">Close</ui-button>
-        <ui-button @click="save" color="primary">Save</ui-button>
-      </div>
-    </ui-modal>
+    <bui-dialog :show="showUpdateCard">
+      <h1 slot="header">Update Card</h1>
+      <template>
+        <bui-input name="front" v-model="override.front" placeholder="Front"></bui-input>
+        <bui-input name="back" v-model="override.back" placeholder="Back"></bui-input>
+        <bui-input name="resource" v-model="override.resourceUrl" placeholder="Resource URL"></bui-input>
+        <bui-input name="note" v-model="override.note" placeholder="Add a Note" :multi-line="true" :rows="3"></bui-input>
+      </template>
+      <template slot="footer">
+        <bui-button @click.native="showUpdateCard = false">Close</bui-button>
+        <bui-button @click.native="save" type="primary">Save</bui-button>
+      </template>
+    </bui-dialog>
 
-    <ui-modal :show.sync="showRemoveCard" header="You want to remove this Card, Are you sure?">
-      <div slot="footer">
-        <ui-button @click="delete" color="danger">
-          <ui-icon icon="delete"></ui-icon>
+    <bui-dialog :show="showRemoveCard">
+      <h1 slot="header">You want to remove this Card, Are you sure?</h1>
+      <template slot="footer">
+        <bui-button @click.native="onDelete" type="danger">
+          <bui-icon icon="delete"></bui-icon>
           Delete
-        </ui-button>
-        <ui-button @click="showRemoveCard = false">Cancel</ui-button>
-      </div>
-    </ui-modal>
+        </bui-button>
+        <bui-button @click.native="showRemoveCard = false">Cancel</bui-button>
+      </template>
+    </bui-dialog>
   </div>
-</template>
+</template> 
 
 <script>
-import Resource from '../utils/Resource'
-import { UiTextbox, UiIcon, UiIconButton } from 'keen-ui'
-import { updateCard, deleteCard } from './../../vuex/actions'
+import { BuiIcon, BuiMenu, BuiMenuItem, BuiResource, BuiIconButton, BuiDialog, BuiButton, BuiInput } from '~/app/components/utils/index'
+import { mapActions } from 'vuex'
 import { cardModel } from './../../models/models'
 import _ from 'lodash'
 
 export default {
-  vuex: {
-    actions: {
-      updateCard,
-      deleteCard
-    }
-  },
+  name: 'card',
   props: {
     item: {
       required: true,
       default: cardModel
-    }
+    },
+    mode: String,
+    showNote: Boolean
   },
   watch: {
     showUpdateCard (value, lastValue) {
@@ -84,6 +83,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'updateCard',
+      'deleteCard'
+    ]),
     spell (strId) {
       if (strId === 'front' || strId === 'back') {
         /*global SpeechSynthesisUtterance*/
@@ -91,37 +94,30 @@ export default {
         // var voices = window.speechSynthesis.getVoices()
         // msg.voice = voices[5] // Note: some voices don't support altering params
         msg.text = this.item[strId]
-        msg.lang = 'fr-FR'
+        msg.lang = strId === 'front' ? 'ja-JP' : 'fr-FR'
+        msg.rate = 0.8
         /*global speechSynthesis*/
         speechSynthesis.speak(msg)
-      }
-    },
-    onSelectOption (selected) {
-      switch (selected.id) {
-        case 0:
-          // edit
-          this.showUpdateCard = true
-          break
-        case 1:
-          // remove
-          this.showRemoveCard = true
-          break
       }
     },
     save () {
       this.updateCard(this.override)
       this.showUpdateCard = false
     },
-    delete () {
+    onDelete () {
       this.deleteCard(this.item)
       this.showRemoveCard = false
     }
   },
   components: {
-    UiTextbox,
-    UiIcon,
-    UiIconButton,
-    Resource
+    BuiMenu,
+    BuiMenuItem,
+    BuiButton,
+    BuiDialog,
+    BuiIcon,
+    BuiIconButton,
+    BuiInput,
+    BuiResource
   },
   data () {
     return {
@@ -142,7 +138,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/style/variables.scss';
+@import '~assets/style/variables.scss';
 
 .card {
   width: auto;

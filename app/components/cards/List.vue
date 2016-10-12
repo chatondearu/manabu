@@ -1,81 +1,93 @@
 <template>
   <div class="card-list">
     <div class="bottom-actions">
-      <ui-toolbar type="default"
-                  hide-nav-icon>
-        <ui-icon-button
-            type="clear"
-            icon="compare arrows"
-        ></ui-icon-button>
-        <ui-icon-button
-            type="clear"
-            icon="sort_by_alpha"
-        ></ui-icon-button>
-      </ui-toolbar>
-      <ui-fab class="float-fab bottom right-1"
-              type="mini" 
-              color="warning" 
-              icon="play_arrow"
-              @click=""></ui-fab>
-      <ui-fab class="float-fab bottom right"
-              type="mini" 
-              color="primary" 
-              icon="add"
-              @click="showAddCard = true"></ui-fab>
+      <bui-toolbar>
+        <bui-icon-button icon="flip-to-back"
+                         @click.native=""></bui-icon-button>
+        <bui-icon-button :icon="'sort-' + ((ordering === 'id') ? 'alphabetical' : 'numeric')" 
+                         @click.native="changeOrder"></bui-icon-button>
+        <bui-icon-button :icon="'note' + ((showNote) ? '' : '-outline')"
+                         @click.native="toggleCardNote"></bui-icon-button>
+      </bui-toolbar>
+      <bui-icon-button class="float-fab bottom right-1"
+        type="primary"      
+        icon="play"></bui-icon-button>
+      <bui-icon-button class="float-fab bottom right"
+        type="primary"
+        icon="plus"
+        @click.native="showAddCard = true"></bui-icon-button>
     </div>
-    <ui-modal :show.sync="showAddCard" header="Add a new Card">
-      <ui-textbox name="front" :value.sync="newCard.front" placeholder="Front"></ui-textbox>
-      <ui-textbox name="back" :value.sync="newCard.back" placeholder="Back"></ui-textbox>
-      <ui-textbox name="back" :value.sync="newCard.resourceUrl" placeholder="Resource URL"></ui-textbox>
-      <ui-textbox name="note" :value.sync="newCard.note" placeholder="Add a Note" :multi-line="true" :rows="2"></ui-textbox>
-      <div slot="footer">
-        <ui-button @click="showAddCard = false">Close</ui-button>
-        <ui-button @click="save" color="primary">Save</ui-button>
-      </div>
-    </ui-modal>
+    <bui-dialog :show="showAddCard">
+      <h1 slot="header">Add a new Card</h1>
+      <template>
+        <bui-input name="front" v-model="newCard.front" placeholder="Front"></bui-input>
+        <bui-input name="back" v-model="newCard.back" placeholder="Back"></bui-input>
+        <bui-input name="resource" v-model="newCard.resourceUrl" placeholder="Resource URL"></bui-input>
+        <bui-input name="note" v-model="newCard.note" placeholder="Add a Note" :multi-line="true" :rows="2"></bui-input>
+      </template>
+      <template slot="footer">
+        <bui-button @click.native="showAddCard = false">Close</bui-button>
+        <bui-button @click.native="save" type="primary">Save</bui-button>
+      </template>
+    </bui-dialog>
 
-    <ui-progress-circular :show="loading"></ui-progress-circular>
-    <card v-show="!loading" v-for="card in cards" :item.sync="card"></card>
+    <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
+    <transition-group name="list" tag="div" v-show="!loading">
+      <card v-for="card in sort(cards)" 
+            :key="card.id"
+            :item="card"
+            :mode="cardMode"
+            :show-note="showNote"></card>
+    </transition-group>
   </div>
 </template>
 
 <script>
-import { UiProgressCircular, UiTextbox, UiButton, UiIconButton, UiFab, UiModal } from 'keen-ui'
+import { BuiIconButton, BuiToolbar, BuiDialog, BuiButton, BuiInput, BuiLoader } from '~/app/components/utils/index'
 import Card from './Card'
 import _ from 'lodash'
 
-import { getCards, setCurrentDeck, addCard } from './../../vuex/actions'
+import { mapActions } from 'vuex'
 import { cardModel } from './../../models/models'
 
 export default {
-  vuex: {
-    getters: {
-      cards: ({ cards }) => cards.all,
-      loading: ({ cards }) => cards.loading,
-      deck: ({decks}) => {
-        return decks.currentDeckId != null ? _.find(decks.all, {id: decks.currentDeckId}) : {}
-      }
-    },
-    actions: {
-      getCards,
-      setCurrentDeck,
-      addCard
+  name: 'list-card',
+  computed: {
+    cards () { return this.$store.state.cards.all },
+    ordering () { return this.$store.state.prefs.cards.ordering },
+    showNote () { return this.$store.state.prefs.cards.showNote },
+    loading () { return this.$store.state.cards.loading },
+    deck () {
+      return this.$store.state.decks.currentDeckId != null ? _.find(this.$store.state.decks.all, {id: this.$store.state.decks.currentDeckId}) : {}
     }
   },
   components: {
-    UiProgressCircular,
-    UiTextbox,
-    UiButton,
-    UiIconButton,
-    UiFab,
-    UiModal,
+    BuiButton,
+    BuiDialog,
+    BuiToolbar,
+    BuiIconButton,
+    BuiInput,
+    BuiLoader,
     Card
   },
   methods: {
+    ...mapActions([
+      'getCards',
+      'setCurrentDeck',
+      'addCard',
+      'updateCardOrder',
+      'toggleCardNote'
+    ]),
     save () {
       this.addCard(_.cloneDeep(this.newCard))
       this.newCard = cardModel()
       this.showAddCard = false
+    },
+    sort (list) {
+      return _.sortBy(_.cloneDeep(list), [this.ordering])
+    },
+    changeOrder () {
+      this.updateCardOrder((this.ordering === 'id') ? 'front' : 'id')
     }
   },
   created () {
@@ -84,7 +96,7 @@ export default {
   },
   data () {
     return {
-      ordering: '',
+      cardMode: 'duo', // duo | front | back
       search: null,
       showAddCard: false,
       newCard: cardModel()
@@ -94,8 +106,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .decks-list {
+  .card-list {
     padding-bottom: 68px;
+  }
+
+  .loading {
+    margin: 20px auto;
+  }
+
+  .list-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+  .list-enter, .list-leave-active {
+    opacity: 0;
+    transform: translateY(150px);
   }
 
   .bottom-actions {

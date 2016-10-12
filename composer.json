@@ -1,5 +1,15 @@
 {
-    "require": {
-        "Slim/Slim": "^3.5"
+  "require": {
+    "Slim/Slim": "^3.5",
+    "php": ">=5.5.0",
+    "monolog/monolog": "1.*",
+    "illuminate/database": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Controllers\\": "./server/ressources",
+      "Models\\": "./server/ressources",
+      "Auth\\": "./server/ressources"
     }
+  }
 }

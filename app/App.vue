@@ -1,79 +1,55 @@
 <template>
-  <div class="app">
+  <div id="app">
     <div class="navigation-top">
-      <ui-toolbar brand="Manabu" 
-                  type="colored" 
-                  text-color="white" 
-                  :title="$route.title"
-                  @nav-icon-clicked="showNavigation = true">
+      <bui-toolbar brand="Manabu"
+                   :title="$route.meta.title"
+                   show-brand
+                   show-navigation-icon
+                   @navigation::clicked="showNavigation = true"
+                   ref="toolbar">
         <div slot="actions">
-          <ui-icon-button
-              type="clear" 
-              color="white"
-              icon="more_vert" 
-              has-dropdown-menu
-              :menu-options="menu" 
-              dropdown-position="bottom right"
-          ></ui-icon-button>
+          <bui-icon-button icon="dots-vertical" type="clear"></bui-icon-button>
         </div>
-      </ui-toolbar>
+      </bui-toolbar>
     </div>
-    <nav id="navigation" v-if="showNavigation">
-      <ui-icon-button icon="close" @click="showNavigation = false"></ui-icon-button>
-      <ui-menu :options="[
-        {
-          id: 0,
-          icon: 'home',
-          text: 'Home'
-        },
-        {
-          id: 1,
-          icon: 'inbox',
-          text: 'Decks'
-        },
-        {
-          id: 3,
-          icon: 'account',
-          text: 'Account'
-        },
-        {
-          id: 2,
-          icon: 'settings',
-          text: 'Settings'
-        }
-      ]" show-icons @option-selected="onSelectNav"></ui-menu>
-    </nav>
-    <router-view class="view" @click="showNavigation = false"></router-view>
+    <transition name="nav-expand">
+      <nav id="navigation" v-if="showNavigation" v-on-clickaway="closeNaviagtion">
+        <bui-icon-button icon="close" type="clear" @click.native="closeNaviagtion"></bui-icon-button>
+        <bui-menu>
+          <bui-menu-item @click.native="closeNaviagtion"><router-link :to="{ path:'/' }" exact>Home</router-link></bui-menu-item>
+          <bui-menu-item @click.native="closeNaviagtion"><router-link :to="{ path:'/decks' }">Decks</router-link></bui-menu-item>
+          <bui-menu-item @click.native="closeNaviagtion"><router-link :to="{ path:'/settings' }">Settings</router-link></bui-menu-item>
+          <bui-menu-item @click.native="closeNaviagtion"><router-link :to="{ path:'/profile' }">Account</router-link></bui-menu-item>
+        </bui-menu>
+      </nav>
+    </transition>
+    <router-view class="view"></router-view>
   </div>
 </template>
 
 <script>
-import {UiIconButton, UiToolbar, UiMenu} from 'keen-ui'
+import { isChildOf } from '~/app/components/utils/functions'
+import { mixin as ClickAway } from 'vue-clickaway'
+import { BuiIcon, BuiIconButton, BuiMenu, BuiMenuItem, BuiToolbar } from '~/app/components/utils'
 import store from './vuex/store'
 
 export default {
+  name: 'app',
+  mixins: [
+    ClickAway
+  ],
   components: {
-    UiIconButton,
-    UiToolbar,
-    UiMenu
+    BuiIconButton,
+    BuiToolbar,
+    BuiIcon,
+    BuiMenu,
+    BuiMenuItem
   },
   store,
   methods: {
-    onSelectNav (selected) {
-      switch (selected.id) {
-        case 0:
-          this.$router.go({path: '/'})
-          break
-        case 1:
-          this.$router.go({path: '/decks'})
-          break
-        case 2:
-          this.$router.go({path: '/settings'})
-          break
-        case 3:
-          this.$router.go({path: '/profile'})
-          break
-      }
+    closeNaviagtion (event) {
+      if (event && isChildOf(event.target, this.$refs.toolbar.$refs.navigationIcon.$el)) { return }
+      if (!this.showNavigation) { return }
       this.showNavigation = false
     }
   },
@@ -86,10 +62,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/style/variables.scss';
-@import './assets/style/theme.scss';
+@import '~assets/style/variables.scss';
+@import '~assets/style/theme.scss';
 
-@import '~keen-ui/dist/keen-ui.css';
+// @import '~keen-ui/dist/keen-ui.css';
 @import '~gridle/sass/gridle/gridle-flex';
 
 @include gridle_setup((
@@ -120,15 +96,16 @@ export default {
   margin : 0 auto;
 }
 
-.app {
+#app {
   padding-top: 56px;
 }
 
 .view {
-  position: absolute;
+  position: fixed;
   top: 56px;
   bottom: 0;
   width: 100%;
+  overflow: auto;
 }
 
 #navigation {
@@ -139,8 +116,15 @@ export default {
   top: 0;
   bottom: 0;
   left: 0;
-
   @include card(3);
+
+  &.nav-expand-enter-active, &.nav-expand-leave-active {
+    transition: left .25s ease;
+    left: 0;
+  }
+  &.nav-expand-enter, &.nav-expand-leave-active {
+    left: -250px;
+  }
 }
 
 .navigation-top {

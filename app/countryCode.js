@@ -1,140 +1,409 @@
-export default [
-  
-]
-
-af-ZA Afrikaans - South Africa  0x0436  AFK
-sq-AL Albanian - Albania  0x041C  SQI
-ar-DZ Arabic - Algeria  0x1401  ARG
-ar-BH Arabic - Bahrain  0x3C01  ARH
-ar-EG Arabic - Egypt  0x0C01  ARE
-ar-IQ Arabic - Iraq 0x0801  ARI
-ar-JO Arabic - Jordan 0x2C01  ARJ
-ar-KW Arabic - Kuwait 0x3401  ARK
-ar-LB Arabic - Lebanon  0x3001  ARB
-ar-LY Arabic - Libya  0x1001  ARL
-ar-MA Arabic - Morocco  0x1801  ARM
-ar-OM Arabic - Oman 0x2001  ARO
-ar-QA Arabic - Qatar  0x4001  ARQ
-ar-SA Arabic - Saudi Arabia 0x0401  ARA
-ar-SY Arabic - Syria  0x2801  ARS
-ar-TN Arabic - Tunisia  0x1C01  ART
-ar-AE Arabic - United Arab Emirates 0x3801  ARU
-ar-YE Arabic - Yemen  0x2401  ARY
-hy-AM Armenian - Armenia  0x042B   
-Cy-az-AZ  Azeri (Cyrillic) - Azerbaijan 0x082C   
-Lt-az-AZ  Azeri (Latin) - Azerbaijan  0x042C   
-eu-ES Basque - Basque 0x042D  EUQ
-be-BY Belarusian - Belarus  0x0423  BEL
-bg-BG Bulgarian - Bulgaria  0x0402  BGR
-ca-ES Catalan - Catalan 0x0403  CAT
-zh-CN Chinese - China 0x0804  CHS
-zh-HK Chinese - Hong Kong SAR 0x0C04  ZHH
-zh-MO Chinese - Macau SAR 0x1404   
-zh-SG Chinese - Singapore 0x1004  ZHI
-zh-TW Chinese - Taiwan  0x0404  CHT
-zh-CHS  Chinese (Simplified)  0x0004   
-zh-CHT  Chinese (Traditional) 0x7C04   
-hr-HR Croatian - Croatia  0x041A  HRV
-cs-CZ Czech - Czech Republic  0x0405  CSY
-da-DK Danish - Denmark  0x0406  DAN
-div-MV  Dhivehi - Maldives  0x0465   
-nl-BE Dutch - Belgium 0x0813  NLB
-nl-NL Dutch - The Netherlands 0x0413   
-en-AU English - Australia 0x0C09  ENA
-en-BZ English - Belize  0x2809  ENL
-en-CA English - Canada  0x1009  ENC
-en-CB English - Caribbean 0x2409   
-en-IE English - Ireland 0x1809  ENI
-en-JM English - Jamaica 0x2009  ENJ
-en-NZ English - New Zealand 0x1409  ENZ
-en-PH English - Philippines 0x3409   
-en-ZA English - South Africa  0x1C09  ENS
-en-TT English - Trinidad and Tobago 0x2C09  ENT
-en-GB English - United Kingdom  0x0809  ENG
-en-US English - United States 0x0409  ENU
-en-ZW English - Zimbabwe  0x3009   
-et-EE Estonian - Estonia  0x0425  ETI
-fo-FO Faroese - Faroe Islands 0x0438  FOS
-fa-IR Farsi - Iran  0x0429  FAR
-fi-FI Finnish - Finland 0x040B  FIN
-fr-BE French - Belgium  0x080C  FRB
-fr-CA French - Canada 0x0C0C  FRC
-fr-FR French - France 0x040C   
-fr-LU French - Luxembourg 0x140C  FRL
-fr-MC French - Monaco 0x180C   
-fr-CH French - Switzerland  0x100C  FRS
-gl-ES Galician - Galician 0x0456   
-ka-GE Georgian - Georgia  0x0437   
-de-AT German - Austria  0x0C07  DEA
-de-DE German - Germany  0x0407   
-de-LI German - Liechtenstein  0x1407  DEC
-de-LU German - Luxembourg 0x1007  DEL
-de-CH German - Switzerland  0x0807  DES
-el-GR Greek - Greece  0x0408  ELL
-gu-IN Gujarati - India  0x0447   
-he-IL Hebrew - Israel 0x040D  HEB
-hi-IN Hindi - India 0x0439  HIN
-hu-HU Hungarian - Hungary 0x040E  HUN
-is-IS Icelandic - Iceland 0x040F  ISL
-id-ID Indonesian - Indonesia  0x0421   
-it-IT Italian - Italy 0x0410   
-it-CH Italian - Switzerland 0x0810  ITS
-ja-JP Japanese - Japan  0x0411  JPN
-kn-IN Kannada - India 0x044B   
-kk-KZ Kazakh - Kazakhstan 0x043F   
-kok-IN  Konkani - India 0x0457   
-ko-KR Korean - Korea  0x0412  KOR
-ky-KZ Kyrgyz - Kazakhstan 0x0440   
-lv-LV Latvian - Latvia  0x0426  LVI
-lt-LT Lithuanian - Lithuania  0x0427  LTH
-mk-MK Macedonian (FYROM)  0x042F  MKD
-ms-BN Malay - Brunei  0x083E   
-ms-MY Malay - Malaysia  0x043E   
-mr-IN Marathi - India 0x044E   
-mn-MN Mongolian - Mongolia  0x0450   
-nb-NO Norwegian (Bokmål) - Norway 0x0414   
-nn-NO Norwegian (Nynorsk) - Norway  0x0814   
-pl-PL Polish - Poland 0x0415  PLK
-pt-BR Portuguese - Brazil 0x0416  PTB
-pt-PT Portuguese - Portugal 0x0816   
-pa-IN Punjabi - India 0x0446   
-ro-RO Romanian - Romania  0x0418  ROM
-ru-RU Russian - Russia  0x0419  RUS
-sa-IN Sanskrit - India  0x044F   
-Cy-sr-SP  Serbian (Cyrillic) - Serbia 0x0C1A   
-Lt-sr-SP  Serbian (Latin) - Serbia  0x081A   
-sk-SK Slovak - Slovakia 0x041B  SKY
-sl-SI Slovenian - Slovenia  0x0424  SLV
-es-AR Spanish - Argentina 0x2C0A  ESS
-es-BO Spanish - Bolivia 0x400A  ESB
-es-CL Spanish - Chile 0x340A  ESL
-es-CO Spanish - Colombia  0x240A  ESO
-es-CR Spanish - Costa Rica  0x140A  ESC
-es-DO Spanish - Dominican Republic  0x1C0A  ESD
-es-EC Spanish - Ecuador 0x300A  ESF
-es-SV Spanish - El Salvador 0x440A  ESE
-es-GT Spanish - Guatemala 0x100A  ESG
-es-HN Spanish - Honduras  0x480A  ESH
-es-MX Spanish - Mexico  0x080A  ESM
-es-NI Spanish - Nicaragua 0x4C0A  ESI
-es-PA Spanish - Panama  0x180A  ESA
-es-PY Spanish - Paraguay  0x3C0A  ESZ
-es-PE Spanish - Peru  0x280A  ESR
-es-PR Spanish - Puerto Rico 0x500A  ES
-es-ES Spanish - Spain 0x0C0A   
-es-UY Spanish - Uruguay 0x380A  ESY
-es-VE Spanish - Venezuela 0x200A  ESV
-sw-KE Swahili - Kenya 0x0441   
-sv-FI Swedish - Finland 0x081D  SVF
-sv-SE Swedish - Sweden  0x041D   
-syr-SY  Syriac - Syria  0x045A   
-ta-IN Tamil - India 0x0449   
-tt-RU Tatar - Russia  0x0444   
-te-IN Telugu - India  0x044A   
-th-TH Thai - Thailand 0x041E  THA
-tr-TR Turkish - Turkey  0x041F  TRK
-uk-UA Ukrainian - Ukraine 0x0422  UKR
-ur-PK Urdu - Pakistan 0x0420  URD
-Cy-uz-UZ  Uzbek (Cyrillic) - Uzbekistan 0x0843   
-Lt-uz-UZ  Uzbek (Latin) - Uzbekistan  0x0443   
-vi-VN Vietnamese - Vietnam  0x042A  VIT
+export default [{
+  id: 'af-ZA',
+  name: 'Afrikaans - South Africa'
+}, {
+  id: 'sq-AL',
+  name: 'Albanian - Albania'
+}, {
+  id: 'ar-DZ',
+  name: 'Arabic - Algeria'
+}, {
+  id: 'ar-BH',
+  name: 'Arabic - Bahrain'
+}, {
+  id: 'ar-EG',
+  name: 'Arabic - Egypt'
+}, {
+  id: 'ar-IQ',
+  name: 'Arabic - Iraq'
+}, {
+  id: 'ar-JO',
+  name: 'Arabic - Jordan'
+}, {
+  id: 'ar-KW',
+  name: 'Arabic - Kuwait'
+}, {
+  id: 'ar-LB',
+  name: 'Arabic - Lebanon'
+}, {
+  id: 'ar-LY',
+  name: 'Arabic - Libya'
+}, {
+  id: 'ar-MA',
+  name: 'Arabic - Morocco'
+}, {
+  id: 'ar-OM',
+  name: 'Arabic - Oman'
+}, {
+  id: 'ar-QA',
+  name: 'Arabic - Qatar'
+}, {
+  id: 'ar-SA',
+  name: 'Arabic - Saudi Arabia'
+}, {
+  id: 'ar-SY',
+  name: 'Arabic - Syria'
+}, {
+  id: 'ar-TN',
+  name: 'Arabic - Tunisia'
+}, {
+  id: 'ar-AE',
+  name: 'Arabic - United Arab Emirates'
+}, {
+  id: 'ar-YE',
+  name: 'Arabic - Yemen'
+}, {
+  id: 'hy-AM',
+  name: 'Armenian - Armenia'
+}, {
+  id: 'Cy-az-AZ',
+  name: 'Azeri (Cyrillic) - Azerbaijan'
+}, {
+  id: 'Lt-az-AZ',
+  name: 'Azeri (Latin) - Azerbaijan'
+}, {
+  id: 'eu-ES',
+  name: 'Basque - Basque'
+}, {
+  id: 'be-BY',
+  name: 'Belarusian - Belarus'
+}, {
+  id: 'bg-BG',
+  name: 'Bulgarian - Bulgaria'
+}, {
+  id: 'ca-ES',
+  name: 'Catalan - Catalan'
+}, {
+  id: 'zh-CN',
+  name: 'Chinese - China'
+}, {
+  id: 'zh-HK',
+  name: 'Chinese - Hong Kong SAR'
+}, {
+  id: 'zh-MO',
+  name: 'Chinese - Macau SAR'
+}, {
+  id: 'zh-SG',
+  name: 'Chinese - Singapore'
+}, {
+  id: 'zh-TW',
+  name: 'Chinese - Taiwan'
+}, {
+  id: 'zh-CHS',
+  name: 'Chinese (Simplified)'
+}, {
+  id: 'zh-CHT',
+  name: 'Chinese (Traditional)'
+}, {
+  id: 'hr-HR',
+  name: 'Croatian - Croatia'
+}, {
+  id: 'cs-CZ',
+  name: 'Czech - Czech Republic'
+}, {
+  id: 'da-DK',
+  name: 'Danish - Denmark'
+}, {
+  id: 'div-MV',
+  name: 'Dhivehi - Maldives'
+}, {
+  id: 'nl-BE',
+  name: 'Dutch - Belgium'
+}, {
+  id: 'nl-NL',
+  name: 'Dutch - The Netherlands'
+}, {
+  id: 'en-AU',
+  name: 'English - Australia'
+}, {
+  id: 'en-BZ',
+  name: 'English - Belize'
+}, {
+  id: 'en-CA',
+  name: 'English - Canada'
+}, {
+  id: 'en-CB',
+  name: 'English - Caribbean'
+}, {
+  id: 'en-IE',
+  name: 'English - Ireland'
+}, {
+  id: 'en-JM',
+  name: 'English - Jamaica'
+}, {
+  id: 'en-NZ',
+  name: 'English - New Zealand'
+}, {
+  id: 'en-PH',
+  name: 'English - Philippines'
+}, {
+  id: 'en-ZA',
+  name: 'English - South Africa'
+}, {
+  id: 'en-TT',
+  name: 'English - Trinidad and Tobago'
+}, {
+  id: 'en-GB',
+  name: 'English - United Kingdom'
+}, {
+  id: 'en-US',
+  name: 'English - United States'
+}, {
+  id: 'en-ZW',
+  name: 'English - Zimbabwe'
+}, {
+  id: 'et-EE',
+  name: 'Estonian - Estonia'
+}, {
+  id: 'fo-FO',
+  name: 'Faroese - Faroe Islands'
+}, {
+  id: 'fa-IR',
+  name: 'Farsi - Iran'
+}, {
+  id: 'fi-FI',
+  name: 'Finnish - Finland'
+}, {
+  id: 'fr-BE',
+  name: 'French - Belgium'
+}, {
+  id: 'fr-CA',
+  name: 'French - Canada'
+}, {
+  id: 'fr-FR',
+  name: 'French - France'
+}, {
+  id: 'fr-LU',
+  name: 'French - Luxembourg'
+}, {
+  id: 'fr-MC',
+  name: 'French - Monaco'
+}, {
+  id: 'fr-CH',
+  name: 'French - Switzerland'
+}, {
+  id: 'gl-ES',
+  name: 'Galician - Galician'
+}, {
+  id: 'ka-GE',
+  name: 'Georgian - Georgia'
+}, {
+  id: 'de-AT',
+  name: 'German - Austria'
+}, {
+  id: 'de-DE',
+  name: 'German - Germany'
+}, {
+  id: 'de-LI',
+  name: 'German - Liechtenstein'
+}, {
+  id: 'de-LU',
+  name: 'German - Luxembourg'
+}, {
+  id: 'de-CH',
+  name: 'German - Switzerland'
+}, {
+  id: 'el-GR',
+  name: 'Greek - Greece'
+}, {
+  id: 'gu-IN',
+  name: 'Gujarati - India'
+}, {
+  id: 'he-IL',
+  name: 'Hebrew - Israel'
+}, {
+  id: 'hi-IN',
+  name: 'Hindi - India'
+}, {
+  id: 'hu-HU',
+  name: 'Hungarian - Hungary'
+}, {
+  id: 'is-IS',
+  name: 'Icelandic - Iceland'
+}, {
+  id: 'id-ID',
+  name: 'Indonesian - Indonesia'
+}, {
+  id: 'it-IT',
+  name: 'Italian - Italy'
+}, {
+  id: 'it-CH',
+  name: 'Italian - Switzerland'
+}, {
+  id: 'ja-JP',
+  name: 'Japanese - Japan'
+}, {
+  id: 'kn-IN',
+  name: 'Kannada - India'
+}, {
+  id: 'kk-KZ',
+  name: 'Kazakh - Kazakhstan'
+}, {
+  id: 'kok-IN',
+  name: 'Konkani - India'
+}, {
+  id: 'ko-KR',
+  name: 'Korean - Korea'
+}, {
+  id: 'ky-KZ',
+  name: 'Kyrgyz - Kazakhstan'
+}, {
+  id: 'lv-LV',
+  name: 'Latvian - Latvia'
+}, {
+  id: 'lt-LT',
+  name: 'Lithuanian - Lithuania'
+}, {
+  id: 'mk-MK',
+  name: 'Macedonian (FYROM)'
+}, {
+  id: 'ms-BN',
+  name: 'Malay - Brunei'
+}, {
+  id: 'ms-MY',
+  name: 'Malay - Malaysia'
+}, {
+  id: 'mr-IN',
+  name: 'Marathi - India'
+}, {
+  id: 'mn-MN',
+  name: 'Mongolian - Mongolia'
+}, {
+  id: 'nb-NO',
+  name: 'Norwegian (Bokmål) - Norway'
+}, {
+  id: 'nn-NO',
+  name: 'Norwegian (Nynorsk) - Norway'
+}, {
+  id: 'pl-PL',
+  name: 'Polish - Poland'
+}, {
+  id: 'pt-BR',
+  name: 'Portuguese - Brazil'
+}, {
+  id: 'pt-PT',
+  name: 'Portuguese - Portugal'
+}, {
+  id: 'pa-IN',
+  name: 'Punjabi - India'
+}, {
+  id: 'ro-RO',
+  name: 'Romanian - Romania'
+}, {
+  id: 'ru-RU',
+  name: 'Russian - Russia'
+}, {
+  id: 'sa-IN',
+  name: 'Sanskrit - India'
+}, {
+  id: 'Cy-sr-SP',
+  name: 'Serbian (Cyrillic) - Serbia'
+}, {
+  id: 'Lt-sr-SP',
+  name: 'Serbian (Latin) - Serbia'
+}, {
+  id: 'sk-SK',
+  name: 'Slovak - Slovakia'
+}, {
+  id: 'sl-SI',
+  name: 'Slovenian - Slovenia'
+}, {
+  id: 'es-AR',
+  name: 'Spanish - Argentina'
+}, {
+  id: 'es-BO',
+  name: 'Spanish - Bolivia'
+}, {
+  id: 'es-CL',
+  name: 'Spanish - Chile'
+}, {
+  id: 'es-CO',
+  name: 'Spanish - Colombia'
+}, {
+  id: 'es-CR',
+  name: 'Spanish - Costa Rica'
+}, {
+  id: 'es-DO',
+  name: 'Spanish - Dominican Republic'
+}, {
+  id: 'es-EC',
+  name: 'Spanish - Ecuador'
+}, {
+  id: 'es-SV',
+  name: 'Spanish - El Salvador'
+}, {
+  id: 'es-GT',
+  name: 'Spanish - Guatemala'
+}, {
+  id: 'es-HN',
+  name: 'Spanish - Honduras'
+}, {
+  id: 'es-MX',
+  name: 'Spanish - Mexico'
+}, {
+  id: 'es-NI',
+  name: 'Spanish - Nicaragua'
+}, {
+  id: 'es-PA',
+  name: 'Spanish - Panama'
+}, {
+  id: 'es-PY',
+  name: 'Spanish - Paraguay'
+}, {
+  id: 'es-PE',
+  name: 'Spanish - Peru'
+}, {
+  id: 'es-PR',
+  name: 'Spanish - Puerto Rico'
+}, {
+  id: 'es-ES',
+  name: 'Spanish - Spain'
+}, {
+  id: 'es-UY',
+  name: 'Spanish - Uruguay'
+}, {
+  id: 'es-VE',
+  name: 'Spanish - Venezuela'
+}, {
+  id: 'sw-KE',
+  name: 'Swahili - Kenya'
+}, {
+  id: 'sv-FI',
+  name: 'Swedish - Finland'
+}, {
+  id: 'sv-SE',
+  name: 'Swedish - Sweden'
+}, {
+  id: 'syr-SY',
+  name: 'Syriac - Syria'
+}, {
+  id: 'ta-IN',
+  name: 'Tamil - India'
+}, {
+  id: 'tt-RU',
+  name: 'Tatar - Russia'
+}, {
+  id: 'te-IN',
+  name: 'Telugu - India'
+}, {
+  id: 'th-TH',
+  name: 'Thai - Thailand'
+}, {
+  id: 'tr-TR',
+  name: 'Turkish - Turkey'
+}, {
+  id: 'uk-UA',
+  name: 'Ukrainian - Ukraine'
+}, {
+  id: 'ur-PK',
+  name: 'Urdu - Pakistan'
+}, {
+  id: 'Cy-uz-UZ',
+  name: 'Uzbek (Cyrillic) - Uzbekistan'
+}, {
+  id: 'Lt-uz-UZ',
+  name: 'Uzbek (Latin) - Uzbekistan'
+}, {
+  id: 'vi-VN',
+  name: 'Vietnamese - Vietnam'
+}]

@@ -4,39 +4,31 @@
       <img src="../../assets/manabu-logo.png">
     </picture>
     <h1>Login</h1>
-    <ui-textbox name="username"
-                :value.sync="username"
+    <bui-input name="username"
+                v-model="username"
                 placeholder="Username"
                 validation-rules="required"
                 :valid.sync="usernameValid"
-                :dirty.sync="usernameDirty"></ui-textbox>
-    <ui-textbox type="password"
+                :dirty.sync="usernameDirty"></bui-input>
+    <bui-input type="password"
                 name="password"
                 :value.sync="password"
                 placeholder="Password"
                 validation-rules="required"
                 :valid.sync="passwordValid"
-                :dirty.sync="passwordDirty"></ui-textbox>
+                :dirty.sync="passwordDirty"></bui-input>
     <ui-button color="primary" :disabled="!valid" @click="send" button-type="button">Submit</ui-button>
   </div>
 </template>
 
 <script>
-import { UiTextbox, UiButton } from 'keen-ui'
-import { login } from './../../vuex/actions'
+// import { UiTextbox, UiButton } from 'keen-ui'
+import { BuiInput } from '~/app/components/utils'
+import { mapActions } from 'vuex'
 
 export default {
-  vuex: {
-    getters: {
-      connected: ({ user }) => user.profile != null
-    },
-    actions: {
-      login
-    }
-  },
   components: {
-    UiTextbox,
-    UiButton
+    BuiInput
   },
   watch: {
     connected (value) {
@@ -46,6 +38,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'login'
+    ]),
     send () {
       if (
         this.valid
@@ -57,7 +52,8 @@ export default {
   computed: {
     valid () {
       return this.usernameValid && this.usernameDirty && this.passwordValid && this.passwordDirty
-    }
+    },
+    connected () { return this.$store.state.user.profile != null }
   },
   data () {
     return {

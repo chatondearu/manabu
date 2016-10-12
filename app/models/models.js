@@ -14,6 +14,16 @@ export const cardModel = () => {
 }
 
 export const deckModel = () => {
-  return {}
+  return {
+    id: null,
+    title: null,
+    description: null,
+    cardsLenght: 0,
+    // cards: _cards,
+    tags: [],
+    createdAt: 0,
+    updatedAt: 0,
+    deletedAt: 0
+  }
 }
 

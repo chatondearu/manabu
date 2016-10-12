@@ -7,9 +7,9 @@
   },
   "autoload": {
     "psr-0": {
-      "Controllers\\": "./server/ressources",
-      "Models\\": "./server/ressources",
-      "Auth\\": "./server/ressources"
+      "Controllers\\": "./server/resources",
+      "Models\\": "./server/resources",
+      "Auth\\": "./server/resources"
     }
   }
 }

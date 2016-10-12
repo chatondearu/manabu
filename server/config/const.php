@@ -23,7 +23,7 @@ if (file_exists(__DIR__.'/config.env.php')) {
  * define('BDD_NAME', 'bdd_name');
  */
 if (file_exists(__DIR__.'/config.database.php')) {
-  require_once('config.env.php');
+  require_once('config.database.php');
 }
 
 /*

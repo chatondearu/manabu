@@ -23,7 +23,7 @@
         </bui-icon-button>
       </div>
     </div>
-    <div v-if="showNote">
+    <div v-if="showNote && item.note">
       <p class="note">
         <small>
           <bui-icon icon="format-quote"></bui-icon>
@@ -73,7 +73,9 @@ export default {
       default: cardModel
     },
     mode: String,
-    showNote: Boolean
+    showNote: Boolean,
+    frontSpell: String,
+    backSpell: String
   },
   watch: {
     showUpdateCard (value, lastValue) {
@@ -94,7 +96,7 @@ export default {
         // var voices = window.speechSynthesis.getVoices()
         // msg.voice = voices[5] // Note: some voices don't support altering params
         msg.text = this.item[strId]
-        msg.lang = strId === 'front' ? 'ja-JP' : 'fr-FR'
+        msg.lang = strId === 'front' ? this.frontSpell : this.backSpell
         msg.rate = 0.8
         /*global speechSynthesis*/
         speechSynthesis.speak(msg)

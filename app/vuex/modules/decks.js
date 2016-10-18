@@ -28,7 +28,10 @@ const mutations = {
 }
 
 const actions = {
-  setCurrentDeck: ({ commit }, deckId) => {
+  setCurrentDeck: ({ dispatch, commit, state }, deckId) => {
+    if (state.all.length <= 0) {
+      dispatch('getAllDecks')
+    }
     commit(SET_CURRENT_DECK, deckId)
   },
   getAllDecks: ({ commit }) => {

@@ -65,6 +65,12 @@ a {
   $width-fab: 40px; 
   position: fixed;
   z-index: 99;
+  a {
+    @include card(1); 
+    &:hover {
+      @include card(2);
+    }
+  }
 
   &.bottom {
     bottom: $margin-fab-floated;

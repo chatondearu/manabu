@@ -37,7 +37,9 @@
             :key="card.id"
             :item="card"
             :mode="cardMode"
-            :show-note="showNote"></card>
+            :show-note="showNote"
+            :front-spell="currentDeck && currentDeck.frontSpell"
+            :back-spell="currentDeck && currentDeck.backSpell"></card>
     </transition-group>
   </div>
 </template>
@@ -57,8 +59,9 @@ export default {
     ordering () { return this.$store.state.prefs.cards.ordering },
     showNote () { return this.$store.state.prefs.cards.showNote },
     loading () { return this.$store.state.cards.loading },
-    deck () {
-      return this.$store.state.decks.currentDeckId != null ? _.find(this.$store.state.decks.all, {id: this.$store.state.decks.currentDeckId}) : {}
+    currentDeck () {
+      let currentId = this.$store.state.decks.currentDeckId
+      return currentId != null ? _.find(this.$store.state.decks.all, {id: currentId}) : null
     }
   },
   components: {

@@ -6,6 +6,8 @@ import BuiDialog from './bui/Dialog'
 import BuiMenu from './bui/Menu'
 import BuiMenuItem from './bui/MenuItem'
 import BuiLoader from './bui/Loader'
+import BuiSelect from './bui/Select'
+import BuiSelectOption from './bui/SelectOption'
 import BuiToolbar from './bui/Toolbar'
 import BuiResource from './bui/Resource'
 // import Icon from 'Icon'
@@ -19,6 +21,8 @@ export {
   BuiMenu,
   BuiMenuItem,
   BuiLoader,
+  BuiSelect,
+  BuiSelectOption,
   BuiResource,
   BuiToolbar
 }

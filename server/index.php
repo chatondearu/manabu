@@ -28,7 +28,7 @@ $app = new \Slim\App(
 // set Global Middleware
 $app->add(new APIHeaderMiddleware());
 // enabling cors
-$app->options('/{routes:.+}', function ($request, $response, $args) {
+$app->options('/{routes:.+}', function ($request, $response) {
   return $response;
 });
 

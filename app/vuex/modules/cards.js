@@ -28,7 +28,7 @@ const mutations = {
 }
 
 const actions = {
-  addCard: ({ commit, state, rootState }, card) => {
+  addCard: ({ commit, rootState }, card) => {
     commit(CARDS_IN_LOADING)
     scope.addCard(card, rootState.decks.currentDeckId, cards => {
       commit(RECEIVE_CARDS, cards)
@@ -46,7 +46,7 @@ const actions = {
       commit(RECEIVE_CARDS, cards)
     })
   },
-  getCards: ({ commit, state, rootState }) => {
+  getCards: ({ commit, rootState }) => {
     commit(CARDS_IN_LOADING)
     scope.getCards(rootState.decks.currentDeckId, cards => {
       commit(RECEIVE_CARDS, cards)

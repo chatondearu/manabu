@@ -8,7 +8,7 @@
       <p class="description">{{ item.description }}</p>
       <p class="total">
         <tag v-for="tagId in item.tags" :tag-id="tagId"></tag>
-        24 cards
+        {{ item.cardsLength }} cards
       </p>
     </div>
   </div>
@@ -29,6 +29,7 @@ export default {
           title: '',
           description: '',
           tags: [],
+          cardsLength: 0,
           groupId: null
         }
       }

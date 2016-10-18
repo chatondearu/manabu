@@ -1,3 +1,7 @@
+/**
+ * Country code for the language spelling voice
+ */
+
 export default [{
   id: 'af-ZA',
   name: 'Afrikaans - South Africa'

@@ -5,7 +5,7 @@ class APIHeaderMiddleware {
     $response = $next($request, $response);
     return $response->withHeader('Access-Control-Allow-Origin', APP_ORIGIN)
                     ->withHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Requested-With, X-PINGOTHER, X-File-Name, Cache-Control, APP-ID, TOKEN')
-                    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTION')
+                    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
                     ->withHeader('Access-Control-Allow-Credentials', 'true')
                     ->withHeader('X-Requested-With', 'XMLHttpRequest')
                     ->withHeader('Content-Type', 'application/json');

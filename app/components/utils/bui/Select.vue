@@ -1,0 +1,116 @@
+<template>
+  <div class="bui-select">
+    <label :for="name">
+      <span class="bui-select-label">{{ label }}</span>
+      <select :name="name"
+             :id="name"
+             :disabled="disabled"
+             :readonly="readonly"
+             :number="number"
+             :maxlength="maxlength"
+             :minlength="minlength"
+             :autocomplete="autoComplete"
+             v-model="currentValue"
+             ref="select">
+        <slot></slot>
+      </select>
+    </label>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'bui-select',
+    props: {
+      value: [String, Number],
+      label: {
+        type: String,
+        default: ''
+      },
+      readonly: {
+        type: Boolean,
+        default: false
+      },
+      // icon: {
+      //   type: String,
+      //   default: ''
+      // },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      name: {
+        type: String,
+        default: ''
+      },
+      number: {
+        type: Boolean,
+        default: false
+      },
+      autoComplete: {
+        type: String,
+        default: 'off'
+      },
+      maxlength: Number,
+      minlength: Number
+    },
+    watch: {
+      'value' (val, oldValue) {
+        this.currentValue = val
+      },
+      'currentValue' (val) {
+        this.$emit('input', val)
+        this.$emit('change', val)
+      }
+    },
+    data () {
+      return {
+        currentValue: this.value
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import '~assets/style/variables.scss';
+
+  .bui-select {
+   // font-family: $font-stack;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+
+    label {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      
+      .bui-select-label {
+        font-size: 14px;
+        line-height: 1;
+        margin-bottom: 2px;
+        color: $primary-color;
+        transition: color 0.1s ease;
+      }
+    }
+
+    select {
+      cursor: auto;
+      background: none;
+      outline: none;
+      border: none;
+
+      padding: 0;
+      display: block;
+      width: 100%;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: $primary-color;
+      transition: border 0.1s ease;
+      color: $primary-color;
+      font-weight: normal;
+      font-size: 16px;
+      // font-family: $font-stack;
+    }
+  }
+</style>

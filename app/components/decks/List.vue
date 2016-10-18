@@ -1,8 +1,9 @@
 <template>
   <div class="decks-list">
     <bui-icon-button class="float-fab bottom right"
-          icon="plus"
-          @click.native="showAddDeck = true"></bui-icon-button>
+                     type="primary"
+                     icon="plus"
+                     @click.native="showAddDeck = true"></bui-icon-button>
     <bui-dialog :show="showAddDeck">
       <h1 slot="header">
         Add a new Deck
@@ -10,6 +11,12 @@
       <template>
         <bui-input name="title" v-model="newDeck.title" placeholder="Title"></bui-input>
         <bui-input name="description" v-model="newDeck.description" placeholder="Description" :multi-line="true" :rows="2"></bui-input>
+        <bui-select name="front_spell" label="frontSpell" v-model="newDeck.frontSpell">
+          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+        </bui-select>
+        <bui-select name="back_spell" label="backSpell" v-model="newDeck.backSpell">
+          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+        </bui-select>
       </template>
       <template slot="footer">
         <bui-button @click.native="showAddDeck = false">Close</bui-button>
@@ -26,7 +33,8 @@
 
 <script>
 import _ from 'lodash'
-import { BuiIconButton, BuiDialog, BuiButton, BuiInput, BuiLoader } from '~/app/components/utils/index'
+import countryCode from '~/app/countryCode'
+import { BuiIconButton, BuiDialog, BuiButton, BuiInput, BuiSelect, BuiSelectOption, BuiLoader } from '~/app/components/utils/index'
 import Deck from './Deck'
 
 import { mapActions } from 'vuex'
@@ -44,6 +52,8 @@ export default {
     BuiDialog,
     BuiIconButton,
     BuiInput,
+    BuiSelect,
+    BuiSelectOption,
     BuiLoader
   },
   methods: {
@@ -79,7 +89,8 @@ export default {
       ordering: '',
       search: null,
       newDeck: deckModel(),
-      showAddDeck: false
+      showAddDeck: false,
+      countryCode
     }
   }
 }

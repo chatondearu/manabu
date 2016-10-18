@@ -248,9 +248,6 @@ export default {
   getTags (cb) {
     setTimeout(() => cb(_.cloneDeep(_tags)), genTimeout())
   },
-  // getDecks (cb) {
-  //   setTimeout(() => cb(_.cloneDeep(_decks)), genTimeout())
-  // },
   getDecks (cb) {
     Vue.http.get('decks').then((resp) => {
       // success
@@ -261,21 +258,6 @@ export default {
       console.log('an error was occured.')
     })
   },
-  // addDeck (newDeck, cb) {
-  //   let lastId = _decks.length
-  //   _decks.push({
-  //     id: lastId,
-  //     title: newDeck.title,
-  //     description: newDeck.description,
-  //     cardsLenght: 0,
-  //     // cards: _cards,
-  //     tags: newDeck.tags || [],
-  //     createdAt: 0,
-  //     updatedAt: 0,
-  //     deletedAt: 0
-  //   })
-  //   cb(_.cloneDeep(_decks))
-  // },
   addDeck (newDeck, cb) {
     Vue.http.post('decks', {
       title: newDeck.title,
@@ -326,24 +308,6 @@ export default {
       console.log('an error was occured.')
     })
   },
-  // addCard (newCard, deckId, cb) {
-  //   let lastId = _cards.length
-  //   _cards.push({
-  //     id: lastId,
-  //     back: newCard.back,
-  //     front: newCard.front,
-  //     note: newCard.note,
-  //     deckId: deckId,
-  //     icon: null,
-  //     createdAt: 0,
-  //     updatedAt: 0,
-  //     deletedAt: 0
-  //   })
-  //   let cards = _.filter(_cards, (card) => {
-  //     return card.deckId === deckId
-  //   })
-  //   setTimeout(() => cb(_.cloneDeep(cards)), genTimeout())
-  // },
   updateCard (overrideCard, cb) {
     Vue.http.put('decks/' + overrideCard.deckId + '/cards/' + overrideCard.id, {
       front: overrideCard.front,
@@ -360,22 +324,6 @@ export default {
       console.log('an error was occured.')
     })
   },
-  // updateCard (overrideCard, cb) {
-  //   _cards = _.map(_cards, (card) => {
-  //     if (card.id === overrideCard.id) {
-  //       return _.merge(card, {
-  //         back: overrideCard.back,
-  //         front: overrideCard.front,
-  //         note: overrideCard.note
-  //       })
-  //     }
-  //     return card
-  //   })
-  //   let cards = _.filter(_cards, (card) => {
-  //     return card.deckId === overrideCard.deckId
-  //   })
-  //   setTimeout(() => cb(_.cloneDeep(cards)), genTimeout())
-  // },
   deleteCard (deletedCard, cb) {
     Vue.http.delete('decks/' + deletedCard.deckId + '/cards/' + deletedCard.id).then((resp) => {
       // success
@@ -386,13 +334,6 @@ export default {
       console.log('an error was occured.')
     })
   },
-  // deleteCard (deletedCard, cb) {
-  //   _.remove(_cards, {id: deletedCard.id})
-  //   let cards = _.filter(_cards, (card) => {
-  //     return card.deckId === deletedCard.deckId
-  //   })
-  //   setTimeout(() => cb(_.cloneDeep(cards)), genTimeout())
-  // },
   getCards (deckId, cb) {
     Vue.http.get('decks/' + deckId + '/cards').then((resp) => {
       // success
@@ -403,21 +344,6 @@ export default {
       console.log('an error was occured.')
     })
   },
-  // getCards (deckId, cb) {
-  //   // _.forEach(_cards, (card) => {
-  //   //   Vue.http.post('decks/1/cards', {
-  //   //     front: card.front,
-  //   //     back: card.back,
-  //   //     note: card.note
-  //   //   }).then(() => {
-  //   //     console.log('card added:' + card.id)
-  //   //   })
-  //   // })
-  //   let cards = _.filter(_cards, (card) => {
-  //     return card.deckId === deckId
-  //   })
-  //   setTimeout(() => cb(_.cloneDeep(cards)), genTimeout())
-  // },
   getAllCards (cb) {
     setTimeout(() => cb(_.cloneDeep(_cards)), genTimeout())
   }

@@ -24,6 +24,21 @@ class Decks extends Controller {
     return $deck;
   }
 
+  public static function updateDeck ($id, $params) {
+    $deck = self::getById($id);
+    foreach (self::getValidArray($params) as $key => $value) {
+      $deck->{$key} = $value;
+    }
+    $deck->save();
+    return $deck;
+  }
+
+  public static function deleteById ($id) {
+    $deck = self::getById($id);
+    $deck->cards()->delete();
+    $deck->delete();
+  }
+
   public static function getValidArray ($params) {
     $validParams = [];
     if (isset($params['title']) && !is_null($params['title'])) $validParams['title'] = $params['title'];

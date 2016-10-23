@@ -64,10 +64,10 @@ if (ENV === 'local') {
     define('URI', 'http://local.manabu.fr');
     define('APP_ORIGIN', URI.':8888');
 } elseif (ENV === 'dev') {
-    define('URI', 'http://dev.manabu.fr');
+    define('URI', 'http://dev.manabu.rlienard.fr');
     define('APP_ORIGIN', URI);
 } else {
-    define('URI', 'http://manabu.fr');
+    define('URI', 'http://manabu.rlienard.fr');
     define('APP_ORIGIN', URI);
 }
 

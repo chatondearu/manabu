@@ -17,7 +17,10 @@ export const routesMap = [
   {
     path: '/deck/:deckId',
     name: 'deck',
-    component: require('./components/cards/List.vue'),
+    components: {
+      default: require('./components/cards/List.vue'),
+      'head-toolbar': require('./components/decks/HeadToolbar.vue')
+    },
     meta: {
       title: 'Deck'
     }

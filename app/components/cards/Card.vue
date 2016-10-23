@@ -32,7 +32,7 @@
       </p>
     </div>
 
-    <bui-dialog :show="showUpdateCard">
+    <bui-dialog v-if="showUpdateCard" :show="showUpdateCard">
       <h1 slot="header">Update Card</h1>
       <template>
         <bui-input name="front" v-model="override.front" placeholder="Front"></bui-input>
@@ -46,7 +46,7 @@
       </template>
     </bui-dialog>
 
-    <bui-dialog :show="showRemoveCard">
+    <bui-dialog v-if="showRemoveCard" :show="showRemoveCard">
       <h1 slot="header">You want to remove this Card, Are you sure?</h1>
       <template slot="footer">
         <bui-button @click.native="onDelete" type="danger">

@@ -53,17 +53,20 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
-    z-index: 99;
+    z-index: 999;
     position: fixed;
     overflow: auto;
     margin: 0px;
+    background-color: rgba($blue-grey-600, .1);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .bui-dialog {
-    position: absolute;
-    top: 140px;
-    left: 0;
-    right: 0;
+    position: relative;
     width: fit-content;
     height: fit-content;
     margin: auto;

@@ -54,7 +54,7 @@ const actions = {
   },
   deleteDeck: ({ commit }, deck) => {
     // commit(types.DECKS_IN_LOADING)
-    scope.deleteCard(deck, decks => {
+    scope.deleteDeck(deck, decks => {
       commit(RECEIVE_DECKS, decks)
     })
   }

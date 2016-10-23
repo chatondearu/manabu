@@ -8,7 +8,8 @@
                    @navigation::clicked="showNavigation = true"
                    ref="toolbar">
         <div slot="actions">
-          <bui-icon-button icon="dots-vertical" type="clear"></bui-icon-button>
+          <router-view name="head-toolbar"></router-view>
+          <!-- <bui-icon-button icon="dots-vertical" type="clear"></bui-icon-button> -->
         </div>
       </bui-toolbar>
     </div>
@@ -101,7 +102,7 @@ export default {
 }
 
 .view {
-  position: fixed;
+  position: absolute;
   top: 56px;
   bottom: 0;
   width: 100%;

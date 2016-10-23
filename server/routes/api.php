@@ -46,6 +46,25 @@ $app->group('/v1', function () {
       return $response->withStatus(200)->getBody()->write($json);
     });
 
+    $this->put('/{deckId}', function ($request, $response) {
+      $deck = Controllers\Decks::updateDeck($request->getAttribute('deckId') ,[
+        'title' => $request->getParam('title'),
+        'description' => $request->getParam('description'),
+        'frontSpell' => $request->getParam('frontSpell'),
+        'backSpell' => $request->getParam('backSpell')
+      ]);
+      $decks = Controllers\Decks::getAll();
+      $json = Controllers\Decks::toJson($decks);
+      return $response->withStatus(201)->getBody()->write($json);
+    });
+
+    $this->delete('/{deckId}', function ($request, $response, $args) {
+      $deck = Controllers\Decks::deleteById($request->getAttribute('deckId'));
+      $decks = Controllers\Decks::getAll();
+      $json = Controllers\Decks::toJson($decks);
+      return $response->withStatus(200)->getBody()->write($json);
+    });
+
     $this->get('/{deckId}/cards', function ($request, $response) {
       $deck = Controllers\Decks::getById($request->getAttribute('deckId'));
       $json = Controllers\Decks::toJson($deck->cards);

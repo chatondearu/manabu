@@ -100,7 +100,7 @@ export default {
   data () {
     return {
       cardMode: 'duo', // duo | front | back
-      search: null,
+      // search: null,
       showAddCard: false,
       newCard: cardModel()
     }

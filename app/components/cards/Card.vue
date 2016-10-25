@@ -2,12 +2,18 @@
   <div class="card">
     <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="row">
-      <p class="first front gr-10">{{ item.front }}
+      <p class="first front"
+         :class="{'gr-10': mode === 'duo', 'gr-20': mode === 'front' }"
+         v-if="mode !== 'back'">
+         {{ item.front }}
         <bui-icon-button v-if="showSpell"
                          icon="volume-high" 
           @click.native="spell('front')"></bui-icon-button>
       </p>
-      <p class="second back gr-10">{{ item.back }}
+      <p class="second back"
+         :class="{'gr-10': mode === 'duo', 'gr-20': mode === 'back' }"
+         v-if="mode !== 'front'">
+         {{ item.back }}
         <bui-icon-button v-if="showSpell"
                          icon="volume-high" 
           @click.native="spell('back')"></bui-icon-button>

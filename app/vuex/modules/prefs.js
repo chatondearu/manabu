@@ -71,6 +71,15 @@ const actions = {
     } else {
       commit('SHOW_CARD_NOTE')
     }
+  },
+  updateMode ({ commit }, mode) {
+    if (mode === 'back') {
+      commit('CARD_MODE_BACK')
+    } else if (mode === 'front') {
+      commit('CARD_MODE_FRONT')
+    } else {
+      commit('CARD_MODE_DUO')
+    }
   }
 }
 

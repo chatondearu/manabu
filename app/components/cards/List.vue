@@ -3,7 +3,7 @@
     <div class="bottom-actions">
       <bui-toolbar>
         <bui-icon-button icon="flip-to-back"
-                         @click.native=""></bui-icon-button>
+                         @click.native="changeMode"></bui-icon-button>
         <bui-icon-button :icon="'sort-' + ((ordering === 'id') ? 'alphabetical' : 'numeric')" 
                          @click.native="changeOrder"></bui-icon-button>
         <bui-icon-button :icon="'note' + ((showNote) ? '' : '-outline')"
@@ -59,6 +59,7 @@ export default {
     cards () { return this.$store.state.cards.all },
     ordering () { return this.$store.state.prefs.cards.ordering },
     showNote () { return this.$store.state.prefs.cards.showNote },
+    cardMode () { return this.$store.state.prefs.cards.mode },
     loading () { return this.$store.state.cards.loading },
     currentDeck () {
       let currentId = this.$store.state.decks.currentDeckId
@@ -80,7 +81,8 @@ export default {
       'setCurrentDeck',
       'addCard',
       'updateCardOrder',
-      'toggleCardNote'
+      'toggleCardNote',
+      'updateMode'
     ]),
     save () {
       this.addCard(_.cloneDeep(this.newCard))
@@ -90,8 +92,11 @@ export default {
     sort (list) {
       return _.sortBy(_.cloneDeep(list), [this.ordering])
     },
+    changeMode () {
+      this.updateMode((this.cardMode === 'duo') ? 'front' : (this.cardMode === 'front') ? 'back' : 'duo')
+    },
     changeOrder () {
-      this.updateCardOrder((this.ordering === 'id') ? 'front' : 'id')
+      this.updateCardOrder((this.ordering === 'id') ? 'front' : (this.ordering === 'front') ? 'back' : 'id')
     }
   },
   created () {
@@ -100,7 +105,6 @@ export default {
   },
   data () {
     return {
-      cardMode: 'duo', // duo | front | back
       // search: null,
       showAddCard: false,
       newCard: cardModel()

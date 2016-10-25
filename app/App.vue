@@ -103,10 +103,9 @@ export default {
 
 .view {
   position: relative;
-  // margin-top: 56px;
   width: 100%;
-  height: 100%;
-  overflow: auto;
+  min-height: 100%;
+  overflow: visible;
 }
 
 #navigation {

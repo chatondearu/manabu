@@ -23,6 +23,10 @@ export default {
 $nav-box-size: 165px;
 
 .home {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
   .navigation-box {
     display: block;
     width: $nav-box-size;

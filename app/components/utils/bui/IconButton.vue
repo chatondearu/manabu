@@ -49,7 +49,8 @@
         this.showDropdown = true
         this.$popper = new Popper(this.$el, this.$refs.dropdown, {
           placement: 'bottom-end',
-          flipBehavior: ['left', 'bottom', 'top']
+          flipBehavior: ['left', 'bottom', 'top'],
+          boundariesElement: window
         })
         this.$nextTick(() => {
           this.$popper.update()

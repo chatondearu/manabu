@@ -60,6 +60,10 @@ let _tags = [
   }
 ]
 
+function trackAPI (resp) {
+  console.log({response: _.omit(resp, ['body', 'data'])})
+}
+
 export default {
   login (username, password, cb) {
     setTimeout(() => cb(_.cloneDeep(_user)), genTimeout())
@@ -72,12 +76,10 @@ export default {
   },
   getDecks (cb) {
     Vue.http.get('decks').then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   addDeck (newDeck, cb) {
@@ -89,12 +91,10 @@ export default {
       frontSpell: newDeck.frontSpell || 'fr-FR',
       backSpell: newDeck.backSpell || 'fr-FR'
     }).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   updateDeck (overrideDeck, cb) {
@@ -106,23 +106,19 @@ export default {
       frontSpell: overrideDeck.frontSpell || 'fr-FR',
       backSpell: overrideDeck.backSpell || 'fr-FR'
     }).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   deleteDeck (deletedDeck, cb) {
     console.log('toto')
     Vue.http.delete('decks/' + deletedDeck.id).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   addCard (newCard, deckId, cb) {
@@ -133,12 +129,10 @@ export default {
       icon: newCard.icon || null,
       resourceUrl: newCard.resourceUrl || null
     }).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   updateCard (overrideCard, cb) {
@@ -149,32 +143,26 @@ export default {
       icon: overrideCard.icon || null,
       resourceUrl: overrideCard.resourceUrl || null
     }).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   deleteCard (deletedCard, cb) {
     Vue.http.delete('decks/' + deletedCard.deckId + '/cards/' + deletedCard.id).then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   },
   getCards (deckId, cb) {
     Vue.http.get('decks/' + deckId + '/cards').then((resp) => {
-      // success
-      console.log('request success.')
+      trackAPI(resp)
       cb(resp.data)
-    }, () => {
-      // error
-      console.log('an error was occured.')
+    }, (resp) => {
+      trackAPI(resp)
     })
   }// ,
   // getAllCards (cb) {

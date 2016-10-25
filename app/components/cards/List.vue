@@ -38,6 +38,7 @@
             :item="card"
             :mode="cardMode"
             :show-note="showNote"
+            :show-spell="currentDeck && currentDeck.useSpell"
             :front-spell="currentDeck && currentDeck.frontSpell"
             :back-spell="currentDeck && currentDeck.backSpell"></card>
     </transition-group>

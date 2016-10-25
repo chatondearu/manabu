@@ -25,5 +25,8 @@ class Deck extends Model {
   protected $guarded = ['id'];
   protected $dates = ['deleted_at'];
   protected $appends = ['cards_length'];
+  protected $casts = [
+   'use_spell' => 'boolean',
+  ];
 
 }

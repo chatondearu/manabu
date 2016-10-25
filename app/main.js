@@ -4,6 +4,8 @@ import Resource from 'vue-resource'
 import Vuex from 'vuex'
 // import Validator from 'vue-validator'
 
+require('./logmatic-config')
+
 import { routesMap, configRouter } from './route-config'
 
 Vue.config.devtools = true

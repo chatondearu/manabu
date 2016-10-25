@@ -21,6 +21,9 @@ export const deckModel = () => {
     cardsLenght: 0,
     // cards: _cards,
     tags: [],
+    useSpell: false,
+    frontSpell: null,
+    backSpell: null,
     createdAt: 0,
     updatedAt: 0,
     deletedAt: 0

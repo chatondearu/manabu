@@ -1,6 +1,7 @@
 <template>
   <div class="bui-icon-button">
-    <a @click.prevent="onClick" :class="{
+    <a @click.prevent="onClick"
+      :class="{
         'clear': type === 'clear',
         'primary': type === 'primary',
         'show-droped-element': showDropdown
@@ -8,7 +9,7 @@
       v-on-clickaway="closeDropdown">
       <icon :icon="icon"></icon>
     </a>
-    <div v-if="useDropdown" v-show="showDropdown" ref="dropdown">
+    <div class="popper" v-if="useDropdown" v-show="showDropdown" ref="dropdown">
       <slot></slot>
     </div>
   </div>
@@ -46,11 +47,12 @@
         if (this.showDropdown) { return }
         this.$emit('open::dropdown')
         this.showDropdown = true
-        console.log(this.$el, this.$refs.dropdown)
+        this.$popper = new Popper(this.$el, this.$refs.dropdown, {
+          placement: 'bottom-end',
+          flipBehavior: ['left', 'bottom', 'top']
+        })
         this.$nextTick(() => {
-          this.$popper = new Popper(this.$el, this.$refs.dropdown, {
-            placement: 'bottom-end'
-          })
+          this.$popper.update()
         })
       },
       closeDropdown () {
@@ -75,6 +77,10 @@
 
   .bui-icon-button {
     display: inline-block;
+  }
+  .popper {
+    // position: absolute;
+    z-index: 99;
   }
   .bui-icon-button a {
     color: $dark;

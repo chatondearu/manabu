@@ -16,12 +16,18 @@
       <template>
         <bui-input name="title" v-model="overrideDeck.title" placeholder="Title"></bui-input>
         <bui-input name="description" v-model="overrideDeck.description" placeholder="Description" :multi-line="true" :rows="2"></bui-input>
-        <bui-select name="front_spell" label="frontSpell" v-model="overrideDeck.frontSpell">
-          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
-        </bui-select>
-        <bui-select name="back_spell" label="backSpell" v-model="overrideDeck.backSpell">
-          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
-        </bui-select>
+        <label>
+          Use Spelling
+          <input type="checkbox" name="use_spell" v-model="overrideDeck.useSpell">
+        </label>
+        <div v-if="overrideDeck.useSpell">
+          <bui-select name="front_spell" label="frontSpell" v-model="overrideDeck.frontSpell">
+            <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+          </bui-select>
+          <bui-select name="back_spell" label="backSpell" v-model="overrideDeck.backSpell">
+            <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+          </bui-select>
+        </div>
       </template>
       <template slot="footer">
         <bui-button @click.native="showUpdateDeck = false">Close</bui-button>

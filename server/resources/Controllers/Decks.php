@@ -43,6 +43,7 @@ class Decks extends Controller {
     $validParams = [];
     if (isset($params['title']) && !is_null($params['title'])) $validParams['title'] = $params['title'];
     if (isset($params['description']) && !is_null($params['description'])) $validParams['description'] = $params['description'];
+    if (isset($params['useSpell']) && !is_null($params['useSpell'])) $validParams['use_spell'] = $params['useSpell'];
     if (isset($params['frontSpell']) && !is_null($params['frontSpell'])) $validParams['front_spell'] = $params['frontSpell'];
     if (isset($params['backSpell']) && !is_null($params['backSpell'])) $validParams['back_spell'] = $params['backSpell'];
     return $validParams;

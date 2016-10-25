@@ -3,11 +3,13 @@
     <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="row">
       <p class="first front gr-10">{{ item.front }}
-        <bui-icon-button icon="volume-high" 
+        <bui-icon-button v-if="showSpell"
+                         icon="volume-high" 
           @click.native="spell('front')"></bui-icon-button>
       </p>
       <p class="second back gr-10">{{ item.back }}
-        <bui-icon-button icon="volume-high" 
+        <bui-icon-button v-if="showSpell"
+                         icon="volume-high" 
           @click.native="spell('back')"></bui-icon-button>
       </p>
       <div class="gr-4">
@@ -74,6 +76,7 @@ export default {
     },
     mode: String,
     showNote: Boolean,
+    showSpell: Boolean,
     frontSpell: String,
     backSpell: String
   },

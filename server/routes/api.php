@@ -32,6 +32,7 @@ $app->group('/v1', function () {
       $deck = Controllers\Decks::addNewDeck([
         'title' => $request->getParam('title'),
         'description' => $request->getParam('description'),
+        'useSpell' => $request->getParam('useSpell'),
         'frontSpell' => $request->getParam('frontSpell'),
         'backSpell' => $request->getParam('backSpell')
       ]);
@@ -50,6 +51,7 @@ $app->group('/v1', function () {
       $deck = Controllers\Decks::updateDeck($request->getAttribute('deckId') ,[
         'title' => $request->getParam('title'),
         'description' => $request->getParam('description'),
+        'useSpell' => $request->getParam('useSpell'),
         'frontSpell' => $request->getParam('frontSpell'),
         'backSpell' => $request->getParam('backSpell')
       ]);

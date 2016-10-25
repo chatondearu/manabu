@@ -85,6 +85,7 @@ export default {
       title: newDeck.title,
       description: newDeck.description,
       tags: newDeck.tags || [],
+      useSpell: newDeck.useSpell || false,
       frontSpell: newDeck.frontSpell || 'fr-FR',
       backSpell: newDeck.backSpell || 'fr-FR'
     }).then((resp) => {
@@ -101,6 +102,7 @@ export default {
       title: overrideDeck.title,
       description: overrideDeck.description,
       tags: overrideDeck.tags || [],
+      useSpell: overrideDeck.useSpell || false,
       frontSpell: overrideDeck.frontSpell || 'fr-FR',
       backSpell: overrideDeck.backSpell || 'fr-FR'
     }).then((resp) => {

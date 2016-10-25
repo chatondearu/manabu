@@ -102,10 +102,10 @@ export default {
 }
 
 .view {
-  position: absolute;
-  top: 56px;
-  bottom: 0;
+  position: relative;
+  // margin-top: 56px;
   width: 100%;
+  height: 100%;
   overflow: auto;
 }
 

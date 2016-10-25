@@ -11,12 +11,18 @@
       <template>
         <bui-input name="title" v-model="newDeck.title" placeholder="Title"></bui-input>
         <bui-input name="description" v-model="newDeck.description" placeholder="Description" :multi-line="true" :rows="2"></bui-input>
-        <bui-select name="front_spell" label="frontSpell" v-model="newDeck.frontSpell">
-          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
-        </bui-select>
-        <bui-select name="back_spell" label="backSpell" v-model="newDeck.backSpell">
-          <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
-        </bui-select>
+        <label>
+          Use Spelling
+          <input type="checkbox" name="use_spell" v-model="newDeck.useSpell">
+        </label>
+        <div v-if="newDeck.useSpell">
+          <bui-select name="front_spell" label="frontSpell" v-model="newDeck.frontSpell">
+            <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+          </bui-select>
+          <bui-select name="back_spell" label="backSpell" v-model="newDeck.backSpell">
+            <bui-select-option v-for="code in countryCode" :value="code.id">{{ code.name }}</bui-select-option>
+          </bui-select>
+        </div>
       </template>
       <template slot="footer">
         <bui-button @click.native="showAddDeck = false">Close</bui-button>

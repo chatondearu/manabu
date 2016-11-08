@@ -1,6 +1,9 @@
 <template>
-  <div id="404">
-    No found 404
+  <div class="404">
+    <picture>
+      <img src="~assets/manabu-logo-inline.png">
+    </picture>
+    <h1>Sorry... where are you want to go ?</h1>
   </div>
 </template>
 
@@ -11,5 +14,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  @import '~style/variables.scss';
+
+  .404 {
+
+  }
 </style>

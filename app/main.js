@@ -4,7 +4,7 @@ import Resource from 'vue-resource'
 import Vuex from 'vuex'
 // import Validator from 'vue-validator'
 
-require('./logmatic-config')
+// require('./logmatic-config')
 
 import { routesMap, configRouter } from './route-config'
 
@@ -20,8 +20,13 @@ Vue.http.options.root = process.env.API_ROOT + '/api/v1'
 const router = new Router({
   routes: routesMap,
   mode: 'history',
-  scrollBehavior (/* to, from, savedPosition */) {
-    return { x: 0, y: 0 }
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      console.log(savedPosition)
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
   }
 })
 

@@ -16,14 +16,18 @@ module.exports = {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'vue': 'vue/dist/vue.common.js',
       'app': path.resolve(__dirname, '../app'),
       'assets': path.resolve(__dirname, '../app/assets'),
+      'style': path.resolve(__dirname, '../app/assets/style'),
       'components': path.resolve(__dirname, '../app/components')
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
+    fallback: [path.join(__dirname, '../node_modules')],
+    alias: {
+      'assets': path.resolve(__dirname, '../app/assets'),
+      'style': path.resolve(__dirname, '../app/assets/style')
+    }
   },
   module: {
     preLoaders: [

@@ -1,20 +1,28 @@
 <template>
-  <button class="bui-button" :class="{ primary: type === 'primary' }">
+  <button class="bui-button" :class="{ primary: type === 'primary' }" :disabled="disabled">
+    <icon v-if="icon" :icon="icon"></icon>
     <slot></slot>
   </button>
 </template>
 
 <script>
+  import Icon from './Icon'
+
   export default {
     name: 'bui-button',
     props: {
-      type: String
+      type: String,
+      disabled: Boolean,
+      icon: String
+    },
+    components: {
+      Icon
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-button {
     background: 0 0;
@@ -45,7 +53,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $blue-grey-50;
+      background-color: $blue-grey-100;
     }
 
     &.primary {
@@ -54,6 +62,12 @@
       &:hover {
         background-color: $blue-700;
       }
+    }
+
+    &:disabled {
+      background-color: $blue-grey-50;
+      color: $blue-grey-300;
+      cursor: not-allowed;
     }
   }
 </style>

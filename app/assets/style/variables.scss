@@ -29,6 +29,9 @@ $secondary-color: #F9B224;
 $white: #ffffff;
 $dark: $blue-grey-600;
 
+$text-default-color: $dark;
+$text-help-color: $blue-grey-400;
+
 
 /// Computes a top-shadow for a card effect.
 /// @param {Number} $depth - depth level

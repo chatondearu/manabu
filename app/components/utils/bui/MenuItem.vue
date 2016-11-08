@@ -11,7 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   li.bui-menu-item {
     & > a {

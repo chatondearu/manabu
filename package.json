@@ -1,7 +1,7 @@
 {
   "name": "manabu",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Manabu was a simple tool for learning and more",
   "author": "Romain Lienard <me@rlienard.fr>",
   "private": true,
   "scripts": {
@@ -14,16 +14,10 @@
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
-    "gridle": "^2.0.48",
-    "keen-ui": "^0.8.9",
     "lodash": "^4.16.2",
     "logmatic-js": "^1.1.0",
-    "material-design-icons": "^2.2.3",
     "mdi": "^1.7.6",
-    "node-sass": "^3.10.0",
     "popper.js": "^0.6.4",
-    "sass-loader": "^4.0.2",
-    "scss-loader": "0.0.1",
     "tracekit": "^0.3.1",
     "vue": "^2.0.1",
     "vue-clickaway": "^2.0.0-rc.1",
@@ -88,6 +82,9 @@
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
-    "webpack-merge": "^0.8.3"
+    "webpack-merge": "^0.8.3",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "scss-loader": "0.0.1"
   }
 }

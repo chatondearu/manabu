@@ -4,10 +4,14 @@ export const ADD_CARD = 'ADD_CARD'
 export const CARDS_IN_LOADING = 'CARDS_IN_LOADING'
 export const RECEIVE_CARDS = 'RECEIVE_CARDS'
 
-export const ADD_DECK = 'ADD_DECK'
+// export const ADD_DECK = 'ADD_DECK'
 export const DECKS_IN_LOADING = 'DECKS_IN_LOADING'
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const SET_CURRENT_DECK = 'SET_CURRENT_DECK'
+
+export const RECEIVE_NOTES = 'RECEIVE_NOTES'
+export const SET_CURRENT_NOTE = 'SET_CURRENT_NOTE'
+export const NOTES_IN_LOADING = 'NOTES_IN_LOADING'
 
 export const ADD_TAG = 'ADD_TAG'
 export const RECEIVE_TAGS = 'RECEIVE_TAGS'

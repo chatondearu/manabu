@@ -1,39 +1,34 @@
 <template>
   <div class="login">
     <picture>
-      <img src="../../assets/manabu-logo.png">
+      <img src="~assets/manabu-logo-inline.png">
     </picture>
     <h1>Login</h1>
     <bui-input name="username"
                 v-model="username"
-                placeholder="Username"
-                validation-rules="required"
-                :valid.sync="usernameValid"
-                :dirty.sync="usernameDirty"></bui-input>
+                placeholder="Username"></bui-input>
     <bui-input type="password"
                 name="password"
                 :value.sync="password"
-                placeholder="Password"
-                validation-rules="required"
-                :valid.sync="passwordValid"
-                :dirty.sync="passwordDirty"></bui-input>
-    <ui-button color="primary" :disabled="!valid" @click="send" button-type="button">Submit</ui-button>
+                placeholder="Password"></bui-input>
+    <bui-button type="primary" :disabled="!valid" @click.native="send">Submit</bui-button>
   </div>
 </template>
 
 <script>
 // import { UiTextbox, UiButton } from 'keen-ui'
-import { BuiInput } from '~/app/components/utils'
+import { BuiInput, BuiButton } from 'app/components/utils'
 import { mapActions } from 'vuex'
 
 export default {
   components: {
-    BuiInput
+    BuiInput,
+    BuiButton
   },
   watch: {
     connected (value) {
       if (value) {
-        this.$router.go({path: '/'})
+        this.$router.push({ name: 'home' })
       }
     }
   },
@@ -51,7 +46,7 @@ export default {
   },
   computed: {
     valid () {
-      return this.usernameValid && this.usernameDirty && this.passwordValid && this.passwordDirty
+      return true
     },
     connected () { return this.$store.state.user.profile != null }
   },
@@ -69,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/style/variables.scss';
+@import '~style/variables.scss';
 
 .login {
   position: fixed;

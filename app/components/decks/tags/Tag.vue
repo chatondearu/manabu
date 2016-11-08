@@ -6,7 +6,7 @@
 
 <script>
 import _ from 'lodash'
-import { BuiIcon } from '~/app/components/utils'
+import { BuiIcon } from 'app/components/utils'
 
 export default {
   props: {
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/style/variables.scss';
+@import '~style/variables.scss';
 
 .tag {
   color: $white;

@@ -36,17 +36,17 @@
       close () {
         this.$emit('hidden::dialog')
       }
-    },
-    data () {
-      return {
-        $popper: null
-      }
     }
+    // data () {
+    //   return {
+    //     $popper: null
+    //   }
+    // }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-dialog-wrapper {
     top: 0px;

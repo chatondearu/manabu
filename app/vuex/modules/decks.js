@@ -1,4 +1,4 @@
-import scope from '~/app/api/scope'
+import scope from 'app/api/scope'
 import {
   // ADD_DECK,
   RECEIVE_DECKS,

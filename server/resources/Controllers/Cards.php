@@ -14,7 +14,9 @@ class Cards extends Controller {
   }
 
   public static function addNewCard ($params) {
-    $card = \Models\Card::create(self::getValidArray($params));
+    $params = self::getValidArray($params);
+    $params['str_id'] = Utils::generateStrId(true);
+    $card = \Models\Card::create($params);
     return $card;
   }
 

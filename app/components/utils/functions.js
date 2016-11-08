@@ -8,6 +8,17 @@ let isChildOf = (target, parent) => {
   }
 }
 
+let parentHasClass = (element, classname) => {
+  if (element.className && element.className.split(' ').indexOf(classname) >= 0) {
+    return true
+  } else if (element.parentNode != null) {
+    return parentHasClass(element.parentNode, classname)
+  } else {
+    return false
+  }
+}
+
 export {
-  isChildOf
+  isChildOf,
+  parentHasClass
 }

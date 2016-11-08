@@ -1,6 +1,6 @@
 import logmatic from 'logmatic-js'
 
-logmatic.init('<api_key>')
+logmatic.init('-tV74gimSsiXsxEac3Q7qQ')
 logmatic.setMetas({'appname': 'manabu', 'userId': 'romain'})
 logmatic.setSendConsoleLogs('severity')
 logmatic.setSendErrors('error')

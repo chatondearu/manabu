@@ -1,11 +1,12 @@
 <template>
   <div class="profile">
+    
   </div>
 </template>
 
 <script>
 // import { UiProgressCircular } from 'keen-ui'
-// import { getCards } from './../../vuex/actions'
+// import { getCards } from 'app/vuex/actions'
 
 export default {
   computed: {
@@ -15,7 +16,7 @@ export default {
   created () {
     if (this.user === null) {
       this.$nextTick(() => {
-        this.$router.go({path: '/login'})
+        this.$router.push({ name: 'login' })
       })
     }
   },
@@ -25,5 +26,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+  @import '~style/variables.scss';
+  .profile {
+    background-color: $white;
+  }
 </style>

@@ -1,4 +1,4 @@
-import scope from '~/app/api/scope'
+import scope from 'app/api/scope'
 import {
   // ADD_CARD,
   RECEIVE_PROFILE,
@@ -25,9 +25,9 @@ const mutations = {
 }
 
 const actions = {
-  login: ({ dispatch }, username, password) => {
+  login: ({ commit }, username, password) => {
     scope.login(username, password, profile => {
-      dispatch(RECEIVE_PROFILE, profile)
+      commit(RECEIVE_PROFILE, profile)
     })
   }
 }

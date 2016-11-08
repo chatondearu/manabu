@@ -11,7 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   option.bui-select-option {
     width: auto;

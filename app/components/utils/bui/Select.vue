@@ -72,13 +72,14 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-select {
    // font-family: $font-stack;
     display: flex;
     align-items: flex-start;
     margin-bottom: 12px;
+    position: relative;
 
     label {
       width: 100%;
@@ -96,20 +97,19 @@
 
     select {
       cursor: auto;
-      background: none;
+      background: rgba($dark, 0.1);
       outline: none;
       border: none;
+      border-radius: 3px;
 
-      padding: 0;
-      display: block;
+      padding: 5px;
       width: 100%;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: $primary-color;
-      transition: border 0.1s ease;
+      height: 32px;
       color: $primary-color;
       font-weight: normal;
       font-size: 16px;
+
+      display: block;
       // font-family: $font-stack;
     }
   }

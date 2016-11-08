@@ -1,20 +1,39 @@
 <template>
-  <div class="bui-input">
-    <label :for="name">
-      <span class="bui-input-label">{{ label || placeholder }}</span>
-      <input :type="type" 
-             :name="name"
-             :id="name"
-             :placeholder="placeholder"
-             :disabled="disabled"
-             :readonly="readonly"
-             :number="number"
-             :maxlength="maxlength"
-             :minlength="minlength"
-             :autocomplete="autoComplete"
-             v-model="currentValue"
-             ref="input">
-    </label>
+  <div class="bui-input"
+       :class="{ 'inline': inline }">
+      <label v-if="label"
+             :for="name"
+             class="bui-input-label">
+        {{ label }}
+      </label>
+      <div class="bui-input-content">
+        <input v-if="type !== 'textarea'"
+               :type="type" 
+               :name="name"
+               :id="name"
+               :placeholder="placeholder"
+               :disabled="disabled"
+               :readonly="readonly"
+               :number="number"
+               :maxlength="maxlength"
+               :minlength="minlength"
+               :autocomplete="autoComplete"
+               v-model="currentValue"
+               ref="input">
+        <textarea v-else
+                  :name="name"
+                  :id="name"
+                  :rows="rows"
+                  :placeholder="placeholder"
+                  :disabled="disabled"
+                  :readonly="readonly"
+                  :number="number"
+                  :maxlength="maxlength"
+                  :minlength="minlength"
+                  :autocomplete="autoComplete"
+                  v-model="currentValue"
+                  ref="input"></textarea>
+      </div>
   </div>
 </template>
 
@@ -62,16 +81,17 @@
       //   type: [Boolean, Object],
       //   default: false
       // },
-      // rows: {
-      //   type: Number,
-      //   default: 2
-      // },
+      rows: {
+        type: Number,
+        default: 2
+      },
       autoComplete: {
         type: String,
         default: 'off'
       },
       maxlength: Number,
-      minlength: Number
+      minlength: Number,
+      inline: Boolean
     },
     watch: {
       'value' (val, oldValue) {
@@ -91,56 +111,73 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/responsive.scss';
+  @import '~style/variables.scss';
 
   .bui-input {
-   // font-family: $font-stack;
-    display: flex;
-    align-items: flex-start;
+    // font-family: $font-stack;
+    @include fl-container(column);
     margin-bottom: 12px;
 
     label {
       width: 100%;
       margin: 0;
       padding: 0;
-      
-      .bui-input-label {
-        font-size: 14px;
-        line-height: 1;
-        margin-bottom: 2px;
-        color: $primary-color;
-        transition: color 0.1s ease;
-      }
     }
+      
+    .bui-input-label {
+      font-size: 1rem;
+      line-height: 1.2rem;
+      margin-bottom: 2px;
+      color: $text-default-color;
+      transition: color 0.1s ease;
+    }
+    .bui-input-content {
+      display: block;
+      position: relative;
 
-    input[type="text"],
-    input[type="number"],
-    textarea {
+      input[type="text"],
+      input[type="password"],
+      input[type="number"],
+      textarea {
+        display: block;
+        box-sizing: border-box;
         cursor: auto;
-        background: none;
+        background: rgba($dark, 0.1);
         outline: none;
         border: none;
+        border-radius: 3px;
 
-        padding: 0;
-        display: block;
+        padding: 3px 10px;
         width: 100%;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-bottom-color: $primary-color;
-        transition: border 0.1s ease;
         color: $primary-color;
         font-weight: normal;
         font-size: 16px;
-        // font-family: $font-stack;
+        line-height: normal;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="number"] {
+        height: 32px;
+      }
+      textarea {
+        resize: vertical;
+        overflow-x: hidden;
+        padding: 5px 7px;
+      }
     }
-    input[type="text"],
-    input[type="number"] {
-      height: 32px;
-    }
-    textarea {
-      resize: vertical;
-      overflow-x: hidden;
-      padding-bottom: 8px;
+
+    &.inline {
+      display: inline-flex;
+      .bui-input-content {
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        textarea {
+          display: inline-block;
+        }
+      }
     }
   }
 </style>

@@ -15,7 +15,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-menu {
     background-color: $white;

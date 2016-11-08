@@ -1,13 +1,14 @@
 <template>
-  <div class="bui-toolbar">
+  <div class="bui-toolbar" :class="[ position ]">
     <div class="bui-toolbar-left" v-if="showNavigationIcon || showBrand">
       <div class="bui-toolbar-icon" v-if="showNavigationIcon">
-        <bui-icon-button type="clear"
+        <bui-icon-button class="unclose-navigation"
+                         type="clear"
                          icon="menu"
                          @click.native="$emit('navigation::clicked')"
                          ref="navigationIcon"></bui-icon-button>
       </div>
-      <div class="bui-toolbar-brand">
+      <div class="bui-toolbar-brand" v-if="showBrand">
         {{ brand }}
       </div>
     </div>
@@ -35,7 +36,17 @@
       showBrand: Boolean,
       title: String,
       showNavigationIcon: Boolean,
-      actionsLeft: Boolean
+      actionsLeft: Boolean,
+      position: String
+    },
+    created () {
+      const style = document.getElementsByTagName('body')[0].style
+      if (this.position === 'top') {
+        style['marginTop'] = '56px'
+      }
+      if (this.position === 'bottom') {
+        style['marginBottom'] = '56px'
+      }
     },
     components: {
       BuiIconButton
@@ -45,7 +56,7 @@
 
 <style lang="scss" scoped>
   // todo change all flex css by mixin or function scss
-  @import '~app/assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-toolbar {
     display: flex;
@@ -53,6 +64,8 @@
     align-items: center;
     font-size: 18px;
     position: relative;
+    width: 100%;
+    z-index: 1;
 
     background-color: $white;
 
@@ -95,5 +108,14 @@
     }
 
     @include card(1);
+
+    &.top {
+      position: fixed;
+      top: 0;
+    }
+    &.bottom {
+      position: fixed;
+      bottom: 0;
+    }
   }
 </style>

@@ -1,4 +1,6 @@
-import scope from '~/app/api/scope'
+import scope from 'app/api/scope'
+import _ from 'lodash'
+
 import {
   // ADD_CARD,
   RECEIVE_CARDS,
@@ -9,8 +11,8 @@ import {
 // shape: [{ id, quantity }]
 const state = {
   all: [],
-  loading: false,
-  currentCardId: null
+  currentCardId: null,
+  loading: false
 }
 
 // mutations
@@ -29,19 +31,22 @@ const mutations = {
 
 const actions = {
   addCard: ({ commit, rootState }, card) => {
+    card = _.cloneDeep(card)
     commit(CARDS_IN_LOADING)
     scope.addCard(card, rootState.decks.currentDeckId, cards => {
       commit(RECEIVE_CARDS, cards)
     })
   },
   updateCard: ({ commit }, card) => {
-    // commit(types.CARDS_IN_LOADING)
+    card = _.cloneDeep(card)
+    commit(CARDS_IN_LOADING)
     scope.updateCard(card, cards => {
       commit(RECEIVE_CARDS, cards)
     })
   },
   deleteCard: ({ commit }, card) => {
-    // commit(types.CARDS_IN_LOADING)
+    card = _.cloneDeep(card)
+    commit(CARDS_IN_LOADING)
     scope.deleteCard(card, cards => {
       commit(RECEIVE_CARDS, cards)
     })

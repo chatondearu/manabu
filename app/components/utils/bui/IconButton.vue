@@ -4,7 +4,9 @@
       :class="{
         'clear': type === 'clear',
         'primary': type === 'primary',
-        'show-droped-element': showDropdown
+        'show-droped-element': showDropdown,
+        'xl': size === 'xl',
+        'xs': size === 'xs'
       }"
       v-on-clickaway="closeDropdown">
       <icon :icon="icon"></icon>
@@ -25,7 +27,8 @@
     props: {
       icon: String,
       type: String,
-      useDropdown: Boolean
+      useDropdown: Boolean,
+      size: String
     },
     mixins: [
       ClickAway
@@ -74,57 +77,65 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '~assets/style/variables.scss';
+  @import '~style/variables.scss';
 
   .bui-icon-button {
     display: inline-block;
+    a {
+      color: $dark;
+      background-color: $blue-grey-50;
+      outline: none;
+      -webkit-tap-highlight-color:transparent;
+
+      position: relative;
+      overflow: hidden;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      &.xl {
+        width: 52px;
+        height: 52px;
+      }
+
+      font-size: 1.3rem;
+
+      &:not([disabled]) {
+        cursor: pointer;
+      }
+
+      &:active, &:focus {
+        background: none;
+        outline: none;
+      }
+
+      transition: background-color ease 0.25s;
+      &:hover {
+        background-color: darken($blue-grey-50, 10%);
+      }
+
+      &.clear {
+        background-color: transparent;
+        &:hover {
+          background-color: $blue-grey-50;
+        }
+      }
+
+      &.primary {
+        background-color: $primary-color;
+        color: $white;
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
   }
   .popper {
     // position: absolute;
     z-index: 99;
-  }
-  .bui-icon-button a {
-    color: $dark;
-    background-color: $blue-grey-50;
-    outline: none;
-    -webkit-tap-highlight-color:transparent;
-
-    position: relative;
-    overflow: hidden;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-
-    &:not([disabled]) {
-      cursor: pointer;
-    }
-
-    &:active, &:focus {
-      background: none;
-      outline: none;
-    }
-
-    transition: background-color ease 0.25s;
-    &:hover {
-      background-color: darken($blue-grey-50, 10%);
-    }
-    &.clear {
-      background-color: transparent;
-      &:hover {
-        background-color: $blue-grey-50;
-      }
-    }
-    &.primary {
-      background-color: $primary-color;
-      color: $white;
-      &:hover {
-        background-color: darken($primary-color, 10%);
-      }
-    }
   }
 </style>

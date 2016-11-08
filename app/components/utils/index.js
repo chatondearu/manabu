@@ -10,6 +10,8 @@ import BuiSelect from './bui/Select'
 import BuiSelectOption from './bui/SelectOption'
 import BuiToolbar from './bui/Toolbar'
 import BuiResource from './bui/Resource'
+import BuiNavigation from './bui/Navigation'
+import BuiFrame from './bui/Frame'
 // import Icon from 'Icon'
 
 export {
@@ -24,5 +26,7 @@ export {
   BuiSelect,
   BuiSelectOption,
   BuiResource,
-  BuiToolbar
+  BuiToolbar,
+  BuiNavigation,
+  BuiFrame
 }

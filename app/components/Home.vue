@@ -1,14 +1,18 @@
 <template>
   <div class="home row row-align-around row-align-middle">
-    <router-link :to="{ path:'/decks' }" class="navigation-box">
+    <router-link :to="{ name: 'decks' }" class="navigation-box">
       <bui-icon icon="inbox"></bui-icon>
       Decks
-    </a>
+    </router-link>
+    <router-link :to="{ name: 'notes' }" class="navigation-box">
+      <bui-icon icon="note"></bui-icon>
+      Notes
+    </router-link>
   </div>
 </template>
 
 <script>
-import { BuiIcon } from '~/app/components/utils/index'
+import { BuiIcon } from 'components/utils'
 
 export default {
   name: 'home',
@@ -19,13 +23,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style/variables.scss';
-$nav-box-size: 165px;
+@import '~style/responsive.scss';
+@import '~style/variables.scss';
+$nav-box-size: 120px;
 
 .home {
-  position: absolute;
-  top: 0;
-  bottom: 0;
+  @include fl-container(row);
+  justify-content: space-around;
+  align-items: center;
+  min-height: 300px;
 
   .navigation-box {
     display: block;

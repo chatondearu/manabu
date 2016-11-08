@@ -5,15 +5,14 @@ namespace Models;
 use \Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\SoftDeletes;
 
-class Card extends Model {
-
+class Note extends Model {
   use SoftDeletes;
 
-  public function deck() {
-    return $this->hasOne('Models\Deck');
+  public function tags() {
+    return $this->belongsToMany('Models\Tag');
   }
 
-  protected $table = 'cards';
+  protected $table = 'notes';
   protected $guarded = ['id'];
   protected $dates = ['deleted_at'];
 

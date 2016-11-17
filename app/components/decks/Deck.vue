@@ -2,25 +2,24 @@
   <div class="deck">
     <header class="bui-header">
       <div class="card">
-        <h1>{{ deck.title }}</h1>
+        <h1>{{ deck.title }}
+          <bui-icon-button icon="dots-vertical" type="clear" use-dropdown>
+            <bui-menu>
+              <bui-menu-item>
+                <a @click="showRemoveDeck = true">Remove Deck</a>
+              </bui-menu-item>
+            </bui-menu>
+          </bui-icon-button>
+        </h1>
         <p>{{ deck.description }}</p>
         <p class="total">
           <tag v-for="tagId in deck.tags" :tag-id="tagId"></tag>
           {{ deck.cardsLength }} cards
         </p>
-        <bui-button>Edit</bui-button>
+        <router-link :to="{ name: 'deck:editing', params: { deckId: $route.params.deckId } }">
+          <bui-button>Edit</bui-button>
+        </router-link>
         <bui-button disabled>Stats</bui-button>
-
-        <bui-icon-button icon="dots-vertical" type="clear" use-dropdown>
-          <bui-menu>
-            <bui-menu-item>
-              <router-link :to="{ name: 'deck:editing', params: { deckId: $route.params.deckId } }">Edit Deck</router-link>
-            </bui-menu-item>
-            <bui-menu-item>
-              <a @click="showRemoveDeck = true">Remove Deck</a>
-            </bui-menu-item>
-          </bui-menu>
-        </bui-icon-button>
       </div>
     </header>
 
@@ -91,9 +90,11 @@
       padding: 15px;
       min-height: 250px;
 
-      background-image: url('/static/15351564311_675b38eee2_c.jpg');
-      background-size: cover;
-      background-position: center center;
+      /*background-image: url('/static/15351564311_675b38eee2_c.jpg');*/
+      /*background-size: cover;*/
+      /*background-position: center center;*/
+
+      background-color: $palette-grey-400;
 
       .card {
         padding: 15px;

@@ -90,14 +90,14 @@
         font-size: 14px;
         line-height: 1;
         margin-bottom: 2px;
-        color: $primary-color;
+        color: $text-default-color;
         transition: color 0.1s ease;
       }
     }
 
     select {
       cursor: auto;
-      background: rgba($dark, 0.1);
+      background: rgba($palette-grey-600, 0.1);
       outline: none;
       border: none;
       border-radius: 3px;
@@ -105,7 +105,7 @@
       padding: 5px;
       width: 100%;
       height: 32px;
-      color: $primary-color;
+      color: $text-default-color;
       font-weight: normal;
       font-size: 16px;
 

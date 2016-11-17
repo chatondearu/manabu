@@ -1,7 +1,7 @@
 <template>
   <transition name="nav-expand">
     <nav class="bui-navigation" v-if="open" v-on-clickaway="close">
-      <icon-button icon="close" type="clear" @click.native="close"></icon-button>
+      <icon-button v-if="showCloseButton" icon="close" type="clear" @click.native="close"></icon-button>
       <slot></slot>
     </nav>
   </transition>
@@ -16,10 +16,19 @@
     mixins: [ClickAway],
     name: 'bui-navigation',
     props: {
-      open: Boolean
+      open: Boolean,
+      activeClickAway: {
+        type: Boolean,
+        default: true
+      },
+      showCloseButton: {
+        type: Boolean,
+        default: true
+      }
     },
     methods: {
       close (event) {
+        if (!this.activeClickAway) { return }
         this.$nextTick(() => {
           if (!parentHasClass(event.target, 'unclose-navigation')) {
             this.$emit('close')
@@ -38,7 +47,7 @@
 
   .bui-navigation {
     position: fixed;
-    z-index: 999;
+    z-index: 1;
     width: 250px;
     background-color: $white;
     top: 0;
@@ -52,6 +61,11 @@
     }
     &.nav-expand-enter, &.nav-expand-leave-active {
       left: -250px;
+    }
+
+    p {
+      margin-top: 10px;
+      padding: 5px;
     }
   }
 </style>

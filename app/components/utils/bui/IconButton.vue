@@ -1,5 +1,9 @@
 <template>
-  <div class="bui-icon-button">
+  <div class="bui-icon-button" :class="{
+        'float-fab': fab.length > 0,
+        'bottom': fab.indexOf('bottom') > -1,
+        'right': fab.indexOf('right') > -1
+      }">
     <a @click.prevent="onClick"
       :class="{
         'clear': type === 'clear',
@@ -28,7 +32,13 @@
       icon: String,
       type: String,
       useDropdown: Boolean,
-      size: String
+      size: String,
+      fab: {
+        type: Array,
+        default () {
+          return []
+        }
+      }
     },
     mixins: [
       ClickAway
@@ -51,9 +61,7 @@
         this.$emit('open::dropdown')
         this.showDropdown = true
         this.$popper = new Popper(this.$el, this.$refs.dropdown, {
-          placement: 'bottom-end',
-          flipBehavior: ['left', 'bottom', 'top'],
-          boundariesElement: window
+          placement: 'bottom-end'
         })
         this.$nextTick(() => {
           this.$popper.update()
@@ -133,9 +141,32 @@
         }
       }
     }
+
+    &.float-fab {
+      $margin-fab-floated: 25px;
+      $width-fab: 40px;
+      position: fixed;
+      z-index: 1;
+      a {
+        @include card(1);
+        &:hover {
+          @include card(2);
+        }
+      }
+
+      &.bottom {
+        bottom: $margin-fab-floated;
+      }
+      &.right {
+        right: $margin-fab-floated;
+      }
+      &.right-1 {
+        right: $margin-fab-floated * 2 + $width-fab;
+      }
+    }
   }
   .popper {
     // position: absolute;
-    z-index: 99;
+    z-index: 2;
   }
 </style>

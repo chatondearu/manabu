@@ -24,10 +24,32 @@ $blue-grey-700: #455A64;
 $blue-grey-800: #37474F;
 $blue-grey-900: #263238;
 
-$primary-color: #319CD5;
-$secondary-color: #F9B224;
+$palette-grey-50: #EBEFF3;
+$palette-grey-100: #C9D3DF;
+$palette-grey-200: #ADB9C9;
+$palette-grey-300: #8393A7;
+$palette-grey-400: #53657D;
+$palette-grey-500: #3D4D65;
+$palette-grey-600: #374355;
+$palette-grey-700: #374355;
+
+$palette-bleu: #0081D5;
+$palette-orange: #FF9947;
+$palette-red: #D1335B;
+$palette-green: #03BD5B;
+$palette-lemon: #9DBF15;
+$palette-purpple: #A939B9;
+
+$primary-color: $palette-bleu;
+$secondary-color: $palette-orange;
+
+$warning-color: $palette-orange;
+$error-color: $palette-red;
+$success-color: $palette-green;
+$info-color: $palette-bleu;
+
 $white: #ffffff;
-$dark: $blue-grey-600;
+$dark: $blue-grey-800;
 
 $text-default-color: $dark;
 $text-help-color: $blue-grey-400;

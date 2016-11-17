@@ -1,6 +1,6 @@
 <template>
   <div class="bui-toolbar" :class="[ position ]">
-    <div class="bui-toolbar-left" v-if="showNavigationIcon || showBrand">
+    <div class="bui-toolbar-left" v-if="showNavigationIcon || showBrand || title">
       <div class="bui-toolbar-icon" v-if="showNavigationIcon">
         <bui-icon-button class="unclose-navigation"
                          type="clear"
@@ -11,15 +11,15 @@
       <div class="bui-toolbar-brand" v-if="showBrand">
         {{ brand }}
       </div>
-    </div>
-    <div v-if="title" class="bui-toolbar-center">
-      <div class="bui-toolbar-title">
+      <div v-if="title" class="bui-toolbar-title">
         {{ title }}
       </div>
     </div>
+    <div class="bui-toolbar-center">
+      <slot></slot>
+    </div>
     <div class="bui-toolbar-right">
       <!-- <div class="default"></div> -->
-      <slot></slot>
       <div class="actions" :class="{ 'left': actionsLeft }">
         <slot name="actions"></slot>
       </div>
@@ -42,10 +42,10 @@
     created () {
       const style = document.getElementsByTagName('body')[0].style
       if (this.position === 'top') {
-        style['marginTop'] = '56px'
+        style['paddingTop'] = '56px'
       }
       if (this.position === 'bottom') {
-        style['marginBottom'] = '56px'
+        style['paddingBottom'] = '56px'
       }
     },
     components: {
@@ -59,30 +59,28 @@
   @import '~style/variables.scss';
 
   .bui-toolbar {
-    display: flex;
-    height: 56px;
-    align-items: center;
-    font-size: 18px;
     position: relative;
     width: 100%;
-    z-index: 1;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
 
     background-color: $white;
+    font-size: 18px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      /*flex-shrink: 0;*/
+      margin-left: 5px;
+    }
 
     .bui-toolbar-center {
-      display: flex;
       flex-grow: 1;
-
-      .bui-toolbar-title {
-        flex-grow: 0;
-      }
     }
 
     .bui-toolbar-left {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-
       .bui-toolbar-icon {
         margin: auto 5px;
       }
@@ -92,13 +90,17 @@
         min-width: 160px;
         border-right: 1px solid $dark;
       }
+
+      .bui-toolbar-title {
+        flex-grow: 1;
+        margin-left: 10px;
+      }
     }
 
     .bui-toolbar-right {
-      flex-shrink: 0;
-
+      flex-grow: 1;
+      margin-right: 5px;
       .actions {
-        display: flex;
         margin-left: auto;
 
         &.left {
@@ -111,10 +113,12 @@
 
     &.top {
       position: fixed;
+      z-index: 1;
       top: 0;
     }
     &.bottom {
       position: fixed;
+      z-index: 1;
       bottom: 0;
     }
   }

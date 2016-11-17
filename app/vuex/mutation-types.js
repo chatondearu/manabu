@@ -1,20 +1,24 @@
-export const USER_IN_LOADING = 'USER_IN_LOADING'
+export const LOADING_ALL = 'LOADING_ALL'
+export const CHECK_VERSION = 'CHECK_VERSION'
+export const APP_OFFLINE = 'APP_OFFLINE'
+export const APP_ONLINE = 'APP_ONLINE'
 
-export const ADD_CARD = 'ADD_CARD'
-export const CARDS_IN_LOADING = 'CARDS_IN_LOADING'
-export const RECEIVE_CARDS = 'RECEIVE_CARDS'
+export const USER_IN_LOADING = 'USER_IN_LOADING'
 
 // export const ADD_DECK = 'ADD_DECK'
 export const DECKS_IN_LOADING = 'DECKS_IN_LOADING'
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const SET_CURRENT_DECK = 'SET_CURRENT_DECK'
+export const ADD_CARD = 'ADD_CARD'
+export const CARDS_IN_LOADING = 'CARDS_IN_LOADING'
+export const RECEIVE_CARDS = 'RECEIVE_CARDS'
 
+export const NOTES_IN_LOADING = 'NOTES_IN_LOADING'
 export const RECEIVE_NOTES = 'RECEIVE_NOTES'
 export const SET_CURRENT_NOTE = 'SET_CURRENT_NOTE'
-export const NOTES_IN_LOADING = 'NOTES_IN_LOADING'
 
-export const ADD_TAG = 'ADD_TAG'
 export const RECEIVE_TAGS = 'RECEIVE_TAGS'
+export const ADD_TAG = 'ADD_TAG'
 
 export const SHOW_NAVIGATION = 'SHOW_NAVIGATION'
 export const HIDE_NAVIGATION = 'HIDE_NAVIGATION'

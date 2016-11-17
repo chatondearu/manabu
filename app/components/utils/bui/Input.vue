@@ -143,14 +143,14 @@
         display: block;
         box-sizing: border-box;
         cursor: auto;
-        background: rgba($dark, 0.1);
+        background: rgba($palette-grey-600, 0.1);
         outline: none;
         border: none;
         border-radius: 3px;
 
         padding: 3px 10px;
         width: 100%;
-        color: $primary-color;
+        color: $text-default-color;
         font-weight: normal;
         font-size: 16px;
         line-height: normal;

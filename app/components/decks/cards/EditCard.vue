@@ -1,7 +1,11 @@
 <template>
   <bui-frame>
+    <bui-toolbar :title="isNew ? 'Add Card' : 'Update Card'">
+      <div slot="actions">
+      </div>
+    </bui-toolbar>
     <div class="edit-card">
-        <h1 slot="header">{{ isNew ? 'Add' : 'Update' }} Card</h1>
+        <h1 slot="header"></h1>
         <bui-input type="textarea" name="front" v-model="override.front" label="Front"></bui-input>
         <bui-input type="textarea" name="back" v-model="override.back" label="Back"></bui-input>
         <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" placeholder="eg. http://domaine.tls/my-resource.png"></bui-input>
@@ -15,7 +19,7 @@
 </template> 
 
 <script>
-import { BuiIcon, BuiButton, BuiInput, BuiFrame } from 'components/utils'
+import { BuiIcon, BuiButton, BuiInput, BuiFrame, BuiToolbar } from 'components/utils'
 import { mapActions } from 'vuex'
 import { cardModel } from 'app/models/models'
 import _ from 'lodash'
@@ -52,6 +56,7 @@ export default {
     BuiButton,
     BuiIcon,
     BuiInput,
+    BuiToolbar,
     BuiFrame
   },
   data () {

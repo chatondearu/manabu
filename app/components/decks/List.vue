@@ -1,16 +1,12 @@
 <template>
   <div class="decks-list">
-    <bui-icon-button class="float-fab bottom right"
-                     type="primary"
+    <bui-icon-button type="primary"
                      icon="plus"
                      size="xl"
                      @click.native="$router.push({
-                       name: 'deck:adding',
-                       params: {
-                         deckId: $route.params.deckId,
-                         cardId: $route.params.cardId
-                       }
-                     })"></bui-icon-button>
+                       name: 'deck:adding'
+                     })"
+                     :fab="['bottom', 'right']"></bui-icon-button>
 
     <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
     <transition-group name="list">
@@ -50,7 +46,7 @@
       navigate (id) {
         if (_.isNumber(id) && id >= 0) {
           this.$router.push({
-            name: 'deck',
+            name: 'cards',
             params: {
               deckId: id
             }

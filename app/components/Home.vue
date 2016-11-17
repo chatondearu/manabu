@@ -38,7 +38,8 @@ $nav-box-size: 120px;
     width: $nav-box-size;
     height: $nav-box-size;
     background-color: $white;
-    border-radius: 5px;
+    color: $dark;
+    border-radius: 2px;
     @include card(3);
 
     .bui-icon {

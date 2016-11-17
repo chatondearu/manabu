@@ -31,12 +31,16 @@ export const routesMap = [
     meta: {
       title: 'Deck'
     },
-    components: {
-      default: require('./components/decks/Deck.vue'),
-      'head-toolbar': require('./components/decks/HeadToolbar.vue')
-    },
-    // component: require('./components/decks/Deck.vue'),
+    component: require('./components/decks/Deck.vue'),
     children: [
+      {
+        path: '',
+        name: 'cards',
+        component: require('./components/decks/cards/List.vue'),
+        meta: {
+          title: 'Deck Cards'
+        }
+      },
       {
         path: 'editing',
         name: 'deck:editing',
@@ -49,30 +53,26 @@ export const routesMap = [
         }
       },
       {
-        path: '',
-        name: 'cards',
-        component: require('./components/decks/cards/List.vue'),
-        meta: {
-          title: 'Deck Cards'
+        path: ':cardId/editing',
+        name: 'card:editing',
+        components: {
+          default: require('./components/decks/cards/List.vue'),
+          frame: require('./components/decks/cards/EditCard.vue')
         },
-        children: [
-          {
-            path: ':cardId/editing',
-            name: 'card:editing',
-            component: require('./components/decks/cards/EditCard.vue'),
-            meta: {
-              title: 'Card Editing'
-            }
-          },
-          {
-            path: 'adding',
-            name: 'card:adding',
-            component: require('./components/decks/cards/EditCard.vue'),
-            meta: {
-              title: 'Card Adding'
-            }
-          }
-        ]
+        meta: {
+          title: 'Card Editing'
+        }
+      },
+      {
+        path: 'adding',
+        name: 'card:adding',
+        components: {
+          default: require('./components/decks/cards/List.vue'),
+          frame: require('./components/decks/cards/EditCard.vue')
+        },
+        meta: {
+          title: 'Card Adding'
+        }
       }
     ]
   },
@@ -87,10 +87,7 @@ export const routesMap = [
   {
     path: '/notes/:noteId',
     name: 'note',
-    components: {
-      default: require('./components/notes/Note.vue')
-      // 'head-toolbar': require('./components/notes/HeadToolbar.vue')
-    },
+    component: require('./components/notes/Note.vue'),
     meta: {
       title: 'Note'
     }

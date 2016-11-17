@@ -2,6 +2,32 @@
   <div class="card-list">
     <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
 
+    <bui-toolbar>
+      <template slot="actions">
+        <bui-icon-button icon="flip-to-back"
+                         @click.native="changeMode"></bui-icon-button>
+        <bui-icon-button :icon="'sort-' + ((ordering === 'id') ? 'alphabetical' : 'numeric')"
+                         @click.native="changeOrder"></bui-icon-button>
+        <bui-icon-button :icon="'note' + ((showNote) ? '' : '-outline')"
+                         @click.native="toggleCardNote"></bui-icon-button>
+      </template>
+    </bui-toolbar>
+
+    <bui-icon-button type="primary"
+                     icon="plus"
+                     size="xl"
+                     :fab="['bottom', 'right']"
+                     @click.native="$router.push({
+                       name: 'card:adding',
+                       params: {
+                         deckId: $route.params.deckId
+                       }
+                     })"></bui-icon-button>
+
+    <remove-card :show="showRemoveCard"
+                 @close="showRemoveCard = false"
+                 :card-id="cardEditedId"></remove-card>
+
     <transition-group name="list" tag="div">
       <card v-for="card in sort(cards)"
             class="list-item"
@@ -16,15 +42,12 @@
     </transition-group>
 
     <router-view></router-view>
-    <remove-card :show="showRemoveCard"
-                 @close="showRemoveCard = false"
-                 :card-id="cardEditedId"></remove-card>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
-import { BuiLoader } from 'components/utils'
+import { BuiLoader, BuiIconButton, BuiToolbar, BuiInput } from 'components/utils'
 import Card from './Card'
 import RemoveCard from './RemoveCard'
 import { mapActions } from 'vuex'
@@ -44,14 +67,26 @@ export default {
   },
   components: {
     BuiLoader,
+    BuiIconButton,
+    BuiToolbar,
+    BuiInput,
     Card,
     RemoveCard
   },
   methods: {
     ...mapActions([
       'getCards',
-      'setCurrentDeck'
+      'setCurrentDeck',
+      'updateCardOrder',
+      'toggleCardNote',
+      'updateMode'
     ]),
+    changeMode () {
+      this.updateMode((this.cardMode === 'duo') ? 'front' : (this.cardMode === 'front') ? 'back' : 'duo')
+    },
+    changeOrder () {
+      this.updateCardOrder((this.ordering === 'id') ? 'front' : (this.ordering === 'front') ? 'back' : 'id')
+    },
     removeCard (id) {
       this.cardEditedId = id == null ? null : id
       this.showRemoveCard = true
@@ -77,7 +112,6 @@ export default {
 
 <style lang="scss" scoped>
   .card-list {
-    padding-bottom: 68px;
   }
 
   .loading {

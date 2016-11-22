@@ -1,23 +1,38 @@
 <template>
   <div class="login">
-    <picture>
-      <img src="~assets/manabu-logo-inline.png">
-    </picture>
-    <h1>Login</h1>
-    <bui-input name="username"
-                v-model="username"
-                placeholder="Username"></bui-input>
-    <bui-input type="password"
-                name="password"
-                :value.sync="password"
-                placeholder="Password"></bui-input>
-    <bui-button type="primary" :disabled="!valid" @click.native="send">Submit</bui-button>
+    <div class="login-content">
+      <p>
+        <figure class="login-logo">
+          <img src="~assets/manabu-logo-inline.png">
+        </figure>
+      </p>
+      <validator name="login">
+        <form novalidate @submit.prevent.stop>
+          <bui-input name="username"
+                     v-model="username"
+                     v-validate.username="['required']"
+                     placeholder="Username"></bui-input>
+          <bui-input type="password"
+                     name="password"
+                     v-model="password"
+                     v-validate.password="['required']"
+                     placeholder="Password"></bui-input>
+          <p class="text-right">
+            <bui-button type="primary"
+                        :disabled="$login.invalid"
+                        @click.native="send">Submit</bui-button>
+          </p>
+        </form>
+      </validator>
+    </div>
   </div>
 </template>
 
 <script>
-// import { UiTextbox, UiButton } from 'keen-ui'
-import { BuiInput, BuiButton } from 'app/components/utils'
+import {
+  BuiInput,
+  BuiButton
+} from 'app/components/utils'
 import { mapActions } from 'vuex'
 
 export default {
@@ -45,19 +60,12 @@ export default {
     }
   },
   computed: {
-    valid () {
-      return true
-    },
     connected () { return this.$store.state.user.profile != null }
   },
   data () {
     return {
       username: null,
-      password: null,
-      usernameValid: true,
-      passwordValid: true,
-      usernameDirty: false,
-      passwordDirty: false
+      password: null
     }
   }
 }
@@ -76,6 +84,14 @@ export default {
 
   padding: 20px;
 
-  background-color: $white;
+  background-color: $palette-grey-700;
+
+  .login-content {
+    max-width: 400px;
+    .login-logo {
+      margin: auto;
+      text-align: center;
+    }
+  }
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <bui-frame>
-    <bui-toolbar :title="isNew ? 'Add Card' : 'Update Card'">
+    <bui-toolbar :title="isNew ? 'Add Card' : 'Update Card'"
+                 show-back-icon
+                 @back::clicked="$router.back()">
       <div slot="actions">
       </div>
     </bui-toolbar>
@@ -28,7 +30,8 @@ export default {
   name: 'edit-card',
   computed: {
     override () {
-      const cards = this.$store.state.cards.all
+      const decks = this.$store.state.decks.all
+      const cards = (_.find(decks, {id: this.deckId}) || {}).cards || []
       return _.cloneDeep(_.find(cards, {id: this.cardId}) || cardModel())
     },
     isNew () {
@@ -42,7 +45,10 @@ export default {
     ]),
     save () {
       if (this.isNew) {
-        this.addCard(this.override)
+        this.addCard({
+          deckId: this.deckId,
+          card: this.override
+        })
       } else {
         this.updateCard(this.override)
       }
@@ -61,7 +67,8 @@ export default {
   },
   data () {
     return {
-      cardId: this.$route.params.cardId || null
+      cardId: this.$route.params.cardId != null ? parseInt(this.$route.params.cardId) : null,
+      deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null
     }
   }
 }

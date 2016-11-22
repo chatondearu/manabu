@@ -30,7 +30,8 @@ export default {
   },
   computed: {
     override () {
-      const cards = this.$store.state.cards.all
+      const decks = this.$store.state.decks.all
+      const cards = (_.find(decks, {id: this.deckId}) || {}).cards || []
       return _.cloneDeep(_.find(cards, {id: this.cardId}) || cardModel())
     }
   },
@@ -41,6 +42,11 @@ export default {
     save () {
       this.deleteCard(this.override)
       this.$emit('close')
+    }
+  },
+  data () {
+    return {
+      deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null
     }
   },
   components: {

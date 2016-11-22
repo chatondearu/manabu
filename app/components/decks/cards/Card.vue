@@ -81,7 +81,7 @@ export default {
   },
   data () {
     return {
-      deckId: this.$route.params.deckId
+      deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null
     }
   }
 }

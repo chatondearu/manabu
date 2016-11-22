@@ -10,6 +10,13 @@ return [
             'cache' => (DEBUG)? false : CACHE_DIR
         ]
     ],
+    'errorHandler' => function ($c) {
+        return function ($request, $response, $exception) use ($c) {
+            return $c['response']->withStatus(500)
+                ->withHeader('Content-Type', 'text/html')
+                ->write('Something went wrong: '. $exception->getMessage());
+        };
+    },
     'notFoundHandler' => function ($c) {
         return function ($request, $response) use ($c) {
             return $c['response']

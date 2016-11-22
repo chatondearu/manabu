@@ -1,7 +1,12 @@
 <template>
   <bui-frame>
+    <bui-toolbar :title="isNew ? 'Add Deck' : 'Update Deck'"
+                 show-back-icon
+                 @back::clicked="$router.back()">
+      <div slot="actions">
+      </div>
+    </bui-toolbar>
     <div class="edit-card">
-      <h1 slot="header">{{ isNew ? 'Add' : 'Update' }} Deck</h1>
       <bui-input name="title" v-model="override.title" placeholder="Title"></bui-input>
       <bui-input type="textarea" name="description" v-model="override.description" placeholder="Description" :rows="4"></bui-input>
       <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" placeholder="eg. http://domaine.tls/my-resource.png"></bui-input>
@@ -27,7 +32,7 @@
 
 <script>
   import _ from 'lodash'
-  import { BuiIcon, BuiButton, BuiInput, BuiSelect, BuiSelectOption, BuiFrame } from 'components/utils'
+  import { BuiIcon, BuiButton, BuiInput, BuiSelect, BuiSelectOption, BuiFrame, BuiToolbar } from 'components/utils'
   import { mapActions } from 'vuex'
   import countryCode from 'app/countryCode'
   import { deckModel } from 'app/models/models'
@@ -66,12 +71,13 @@
       BuiInput,
       BuiSelect,
       BuiSelectOption,
-      BuiFrame
+      BuiFrame,
+      BuiToolbar
     },
     data () {
       return {
         countryCode,
-        deckId: this.$route.params.deckId != null ? this.$route.params.deckId : null
+        deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null
       }
     }
   }

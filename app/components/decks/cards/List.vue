@@ -1,7 +1,5 @@
 <template>
   <div class="card-list">
-    <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
-
     <bui-toolbar>
       <template slot="actions">
         <bui-icon-button icon="flip-to-back"
@@ -28,18 +26,21 @@
                  @close="showRemoveCard = false"
                  :card-id="cardEditedId"></remove-card>
 
-    <transition-group name="list" tag="div">
-      <card v-for="card in sort(cards)"
-            class="list-item"
-            :key="card.id"
-            :item="card"
-            :mode="cardMode"
-            :show-note="showNote"
-            :show-spell="currentDeck && currentDeck.useSpell"
-            :front-spell="currentDeck && currentDeck.frontSpell"
-            :back-spell="currentDeck && currentDeck.backSpell"
-            @card::remove="removeCard(card.id)"></card>
-    </transition-group>
+    <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
+    <div v-if="deck">
+      <transition-group name="list" tag="div">
+        <card v-for="card in sort(deck.cards)"
+              class="list-item"
+              :key="card.id"
+              :item="card"
+              :mode="cardMode"
+              :show-note="showNote"
+              :show-spell="deck && deck.useSpell"
+              :front-spell="deck && deck.frontSpell"
+              :back-spell="deck && deck.backSpell"
+              @card::remove="removeCard(card.id)"></card>
+      </transition-group>
+    </div>
 
     <router-view></router-view>
   </div>
@@ -55,14 +56,12 @@ import { mapActions } from 'vuex'
 export default {
   name: 'list-card',
   computed: {
-    cards () { return this.$store.state.cards.all },
-    ordering () { return this.$store.state.prefs.cards.ordering },
-    showNote () { return this.$store.state.prefs.cards.showNote },
-    cardMode () { return this.$store.state.prefs.cards.mode },
-    loading () { return this.$store.state.cards.loading },
-    currentDeck () {
-      let currentId = this.deckId
-      return currentId != null ? _.find(this.$store.state.decks.all, {id: currentId}) : null
+    ordering () { return this.$store.state.user.prefs.cards.ordering },
+    showNote () { return this.$store.state.user.prefs.cards.showNote },
+    cardMode () { return this.$store.state.user.prefs.cards.mode },
+    loading () { return this.$store.state.decks.loading },
+    deck () {
+      return this.deckId != null ? _.find(this.$store.state.decks.all, {id: this.deckId}) : {}
     }
   },
   components: {
@@ -96,8 +95,7 @@ export default {
     }
   },
   created () {
-    this.setCurrentDeck(this.deckId)
-    this.getCards()
+    this.getCards(parseInt(this.$route.params.deckId))
   },
   data () {
     return {

@@ -1,6 +1,12 @@
 <template>
   <div class="bui-toolbar" :class="[ position ]">
     <div class="bui-toolbar-left" v-if="showNavigationIcon || showBrand || title">
+      <div class="bui-toolbar-icon" v-if="!showNavigationIcon && showBackIcon">
+        <bui-icon-button type="clear"
+                         icon="arrow-left"
+                         @click.native="$emit('back::clicked')"
+                         ref="backIcon"></bui-icon-button>
+      </div>
       <div class="bui-toolbar-icon" v-if="showNavigationIcon">
         <bui-icon-button class="unclose-navigation"
                          type="clear"
@@ -36,6 +42,7 @@
       showBrand: Boolean,
       title: String,
       showNavigationIcon: Boolean,
+      showBackIcon: Boolean,
       actionsLeft: Boolean,
       position: String
     },

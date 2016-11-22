@@ -49,6 +49,7 @@
 
 <script>
 import is from 'is_js'
+import _ from 'lodash'
 import { BuiIcon, BuiIconButton, BuiMenu, BuiMenuItem, BuiToolbar, BuiNavigation } from 'app/components/utils'
 import store from './vuex/store'
 
@@ -68,20 +69,21 @@ export default {
   store,
   created () {
     // sync all data from API/LocalStorage with the store.
-    console.log(is)
     this.isOffline = !is.online()
-    this.isDesktop = is.desktop()
-
-    window.addEventListener('resize', () => {
-      this.$nextTick(() => {
-        this.screenSize = window.innerWidth
-      })
-    })
+    this.updateState()
+    window.addEventListener(
+      'resize',
+      _.debounce(this.updateState, 100)
+    )
   },
   methods: {
     closeNaviagtion (event) {
       if (!this.showNavigation) { return }
       this.showNavigation = false
+    },
+    updateState () {
+      this.screenSize = window.innerWidth
+      this.isDesktop = is.desktop()
     }
   },
   computed: {

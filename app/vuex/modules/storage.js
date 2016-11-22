@@ -22,7 +22,7 @@ const mutations = {
 
 const actions = {
   getAll: ({ commit }) => {
-    commit(NOTES_IN_LOADING)
+    commit(LOADING_ALL)
     scope.getNotes(notes => {
       commit(RECEIVE_NOTES, notes)
     })

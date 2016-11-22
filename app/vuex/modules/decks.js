@@ -1,9 +1,11 @@
+import _ from 'lodash'
 import scope from 'app/api/scope'
+
 import {
-  // ADD_DECK,
   RECEIVE_DECKS,
-  SET_CURRENT_DECK,
-  DECKS_IN_LOADING
+  DECKS_IN_LOADING,
+  RECEIVE_CARDS,
+  CARDS_IN_LOADING
 } from '../mutation-types'
 
 // initial state
@@ -18,22 +20,21 @@ const mutations = {
   [DECKS_IN_LOADING] (state) {
     state.loading = true
   },
+  [CARDS_IN_LOADING] (state) {
+    state.loading = true
+  },
   [RECEIVE_DECKS] (state, decks) {
     state.loading = false
     state.all = decks
   },
-  [SET_CURRENT_DECK] (state, deckId) {
-    state.currentDeckId = deckId
+  [RECEIVE_CARDS] (state, payload) {
+    state.loading = false
+    let deck = _.find(state.all, {id: payload.deckId})
+    deck.cards = payload.cards
   }
 }
 
 const actions = {
-  setCurrentDeck: ({ dispatch, commit, state }, deckId) => {
-    if (state.all.length <= 0) {
-      dispatch('getAllDecks')
-    }
-    commit(SET_CURRENT_DECK, deckId)
-  },
   getAllDecks: ({ commit }) => {
     commit(DECKS_IN_LOADING)
     scope.getDecks(decks => {
@@ -47,15 +48,52 @@ const actions = {
     })
   },
   updateDeck: ({ commit }, deck) => {
-    // commit(types.DECKS_IN_LOADING)
     scope.updateDeck(deck, decks => {
       commit(RECEIVE_DECKS, decks)
     })
   },
   deleteDeck: ({ commit }, deck) => {
-    // commit(types.DECKS_IN_LOADING)
     scope.deleteDeck(deck, decks => {
       commit(RECEIVE_DECKS, decks)
+    })
+  },
+  addCard: ({ commit }, payload) => {
+    let card = _.cloneDeep(payload.card)
+    commit(CARDS_IN_LOADING)
+    scope.addCard(card, payload.deckId, cards => {
+      commit(RECEIVE_CARDS, {
+        deckId: payload.deckId,
+        cards: cards
+      })
+    })
+  },
+  updateCard: ({ commit }, card) => {
+    card = _.cloneDeep(card)
+    commit(CARDS_IN_LOADING)
+    scope.updateCard(card, cards => {
+      commit(RECEIVE_CARDS, {
+        deckId: card.deckId,
+        cards: cards
+      })
+    })
+  },
+  deleteCard: ({ commit }, card) => {
+    card = _.cloneDeep(card)
+    commit(CARDS_IN_LOADING)
+    scope.deleteCard(card, cards => {
+      commit(RECEIVE_CARDS, {
+        deckId: card.deckId,
+        cards: cards
+      })
+    })
+  },
+  getCards: ({ commit }, deckId) => {
+    commit(CARDS_IN_LOADING)
+    scope.getCards(deckId, cards => {
+      commit(RECEIVE_CARDS, {
+        deckId: deckId,
+        cards: cards
+      })
     })
   }
 }

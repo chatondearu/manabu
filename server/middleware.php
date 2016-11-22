@@ -12,6 +12,26 @@ class APIHeaderMiddleware {
   }
 }
 
+class AuthMidleware {
+    public function __invoke($request, $response, $next) {
+        $token = $request->getHeader('TOKEN');
+
+        if (is_array($token) && isset($token[0]) && $token[0] !== '') {
+            $clientToken = $token[0];
+            $authClient = new Auth\AuthClientToken();
+
+            if ($authClient->Authorized($clientToken)) {
+                $response = $next($request, $response);
+            } else {
+                throw new Exception($authClient->message);
+            }
+        } else {
+            throw new Exception('no token passed.');
+        }
+        return $response;
+    }
+}
+
 class Maintenance {
   public function __invoke($request, $response, $next) {
     if (ISOFFLINE && $request->getUri()->getPath() !== '/offline') {

@@ -39,8 +39,14 @@
 <script>
   import _ from 'lodash'
   import { mapActions } from 'vuex'
-  import { BuiMenu, BuiMenuItem, BuiButton, BuiToolbar, BuiIconButton, BuiDialog } from 'components/utils'
-  // import Tag from './tags/Tag'
+  import {
+    BuiMenu,
+    BuiMenuItem,
+    BuiButton,
+    BuiToolbar,
+    BuiIconButton,
+    BuiDialog
+  } from 'components/utils'
 
   export default {
     name: 'deck',

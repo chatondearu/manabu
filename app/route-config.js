@@ -109,6 +109,13 @@ export const routesMap = [
     }
   },
   {
+    path: '/settings',
+    name: 'settings',
+    meta: {
+      title: 'Settings'
+    }
+  },
+  {
     path: '/login',
     name: 'login',
     component: require('./components/user/Login.vue'),

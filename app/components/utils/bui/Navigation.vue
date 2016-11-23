@@ -1,7 +1,7 @@
 <template>
   <transition name="nav-expand">
     <nav class="bui-navigation" v-if="open" v-on-clickaway="close">
-      <icon-button v-if="showCloseButton" icon="close" type="clear" @click.native="close"></icon-button>
+      <icon-button class="bui-navigation-close" v-if="showCloseButton" icon="close" type="clear" @click.native="close"></icon-button>
       <slot></slot>
     </nav>
   </transition>
@@ -61,6 +61,12 @@
     }
     &.nav-expand-enter, &.nav-expand-leave-active {
       left: -250px;
+    }
+
+    .bui-navigation-close {
+      position: absolute;
+      right: 0;
+      margin: 10px 10px 0 0;
     }
 
     p {

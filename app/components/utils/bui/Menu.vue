@@ -1,15 +1,26 @@
-<template>
-  <div class="bui-menu" role="menu" tabindex="1" :class="{ 'no-flat': !flat }">
-    <ul class="bui-menu-content" @click="$emit('click')">
-      <slot></slot>
-    </ul>
-  </div>
-</template>
-
 <script>
   export default {
     props: {
       flat: Boolean
+    },
+    render (createElement) {
+      return createElement('div', {
+        class: {
+          'bui-menu': true,
+          'no-flat': !this.flat
+        },
+        attrs: {
+          role: 'menu',
+          tabindex: '1'
+        }
+      }, [
+        createElement('ul', {
+          class: ['bui-menu-content'],
+          nativeOn: {
+            click: this.nativeClickHandler
+          }
+        }, this.$slots.default)
+      ])
     }
   }
 </script>

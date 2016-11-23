@@ -1,12 +1,44 @@
-<template>
-  <li class="bui-menu-item">
-    <slot></slot>
-  </li>
-</template>
-
 <script>
+  import _ from 'lodash'
+  import Icon from './Icon'
+
   export default {
-    name: 'bui-menu-item'
+    name: 'bui-menu-item',
+    props: {
+      icon: String
+    },
+    render (createElement) {
+      const firstChild = this.$slots.default.length > 0 ? this.$slots.default[0] : null
+      const children = []
+      const icon = this.icon ? createElement(Icon, {
+        props: {
+          icon: this.icon
+        }
+      }) : null
+
+      // if first child was a components and is 'routeur-link'
+      const hasRouterLink = firstChild.componentOptions && firstChild.componentOptions.tag === 'router-link'
+
+      if (!hasRouterLink) {
+        children.push(createElement('a', append(icon, this.$slots.default)))
+      } else {
+        // then we don't need to add tha 'a' element around the default slot
+        const childrenLinkOpt = this.$slots.default[0].componentOptions
+        childrenLinkOpt.children = append(icon, childrenLinkOpt.children)
+        children.push(this.$slots.default)
+      }
+
+      return createElement('li', {
+        class: ['bui-menu-item']
+      }, children)
+    }
+  }
+
+  function append (el, list) {
+    if (!el) {
+      return list
+    }
+    return _.concat([el], list)
   }
 </script>
 
@@ -29,6 +61,11 @@
       padding: 0 15px;
 
       user-select: none;
+
+      &.router-link-active,
+      &.active {
+        border-left: 3px solid $primary-color;
+      }
 
       &:hover {
         cursor: pointer;

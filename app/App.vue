@@ -20,21 +20,21 @@
           <img src="~assets/manabu-logo-inline.png">
         </div>
       </header>
-      <bui-menu flat>
-        <bui-menu-item @click.native="closeNaviagtion">
-          <router-link :to="{ name: 'home' }"><bui-icon icon="home"></bui-icon>Home</router-link>
+      <bui-menu flat @click.native="closeNaviagtion">
+        <bui-menu-item icon="home">
+          <router-link :to="{ name: 'home' }" exact>Home</router-link>
         </bui-menu-item>
-        <bui-menu-item @click.native="closeNaviagtion">
-          <router-link :to="{ name: 'decks' }"><bui-icon icon="decks"></bui-icon>Decks</router-link>
+        <bui-menu-item icon="decks">
+          <router-link :to="{ name: 'decks' }">Decks</router-link>
         </bui-menu-item>
-        <bui-menu-item @click.native="closeNaviagtion">
-          <router-link :to="{ name: 'notes' }"><bui-icon icon="notes"></bui-icon>Notes</router-link>
+        <bui-menu-item icon="notes">
+          <router-link :to="{ name: 'notes' }">Notes</router-link>
         </bui-menu-item>
-        <bui-menu-item @click.native="closeNaviagtion">
-          <router-link :to="{ name: 'settings' }"><bui-icon icon="settings"></bui-icon>Settings</router-link>
+        <bui-menu-item icon="settings">
+          <router-link :to="{ name: 'settings' }">Settings</router-link>
         </bui-menu-item>
-        <bui-menu-item @click.native="closeNaviagtion">
-          <router-link :to="{ name: 'profile' }"><bui-icon icon="account"></bui-icon>Account</router-link>
+        <bui-menu-item icon="account">
+          <router-link :to="{ name: 'profile' }">Account</router-link>
         </bui-menu-item>
       </bui-menu>
       <hr>

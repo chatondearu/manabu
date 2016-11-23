@@ -8,10 +8,8 @@ import {
   ORDER_CARD_BY_FRONT,
   ORDER_CARD_BY_BACK,
   SHOW_CARD_NOTE,
-  HIDE_CARD_NOTE,
-  CARD_MODE_DUO,
-  CARD_MODE_FRONT,
-  CARD_MODE_BACK
+  CARD_DUO_MODE,
+  CARD_REVERSE_MODE
 } from '../mutation-types'
 
 // initial state
@@ -21,7 +19,8 @@ const state = {
     cards: {
       ordering: 'id',
       showNote: true,
-      mode: 'duo'
+      reverse: false,
+      duo: true
     }
   },
   loading: false
@@ -29,9 +28,6 @@ const state = {
 
 // mutations
 const mutations = {
-  // [ADD_CARD] (state, card) {
-  //   state.all.push()
-  // },
   [RECEIVE_PROFILE] (state, profile) {
     state.profile = profile
   },
@@ -44,29 +40,23 @@ const mutations = {
   [HIDE_NAVIGATION] (state) {
     state.prefs.showNavigation = false
   },
-  [ORDER_CARD_BY_ID] () {
+  [ORDER_CARD_BY_ID] (state) {
     state.prefs.cards.ordering = 'id'
   },
-  [ORDER_CARD_BY_FRONT] () {
+  [ORDER_CARD_BY_FRONT] (state) {
     state.prefs.cards.ordering = 'front'
   },
-  [ORDER_CARD_BY_BACK] () {
+  [ORDER_CARD_BY_BACK] (state) {
     state.prefs.cards.ordering = 'back'
   },
-  [SHOW_CARD_NOTE] () {
-    state.prefs.cards.showNote = true
+  [SHOW_CARD_NOTE] (state, isShow) {
+    state.prefs.cards.showNote = isShow
   },
-  [HIDE_CARD_NOTE] () {
-    state.prefs.cards.showNote = false
+  [CARD_DUO_MODE] (state, isDuo) {
+    state.prefs.cards.duo = isDuo
   },
-  [CARD_MODE_DUO] () {
-    state.prefs.cards.mode = 'duo'
-  },
-  [CARD_MODE_FRONT] () {
-    state.prefs.cards.mode = 'front'
-  },
-  [CARD_MODE_BACK] () {
-    state.prefs.cards.mode = 'back'
+  [CARD_REVERSE_MODE] (state, isReverse) {
+    state.prefs.cards.reverse = isReverse
   }
 }
 
@@ -86,20 +76,13 @@ const actions = {
     }
   },
   toggleCardNote ({ commit, state }) {
-    if (state.cards.showNote) {
-      commit('HIDE_CARD_NOTE')
-    } else {
-      commit('SHOW_CARD_NOTE')
-    }
+    commit('SHOW_CARD_NOTE', !state.prefs.cards.showNote)
   },
-  updateMode ({ commit }, mode) {
-    if (mode === 'back') {
-      commit('CARD_MODE_BACK')
-    } else if (mode === 'front') {
-      commit('CARD_MODE_FRONT')
-    } else {
-      commit('CARD_MODE_DUO')
-    }
+  toggleMode ({ commit, state }) {
+    commit('CARD_DUO_MODE', !state.prefs.cards.duo)
+  },
+  reverseCard ({ commit, state }) {
+    commit('CARD_REVERSE_MODE', !state.prefs.cards.reverse)
   }
 }
 

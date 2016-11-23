@@ -2,8 +2,12 @@
   <div class="card-list">
     <bui-toolbar>
       <template slot="actions">
-        <bui-icon-button icon="flip-to-back"
-                         @click.native="changeMode"></bui-icon-button>
+        <bui-icon-button :icon="isDuo ? 'eye-off' : 'eye'"
+                         @click.native="toggleMode"></bui-icon-button>
+        <bui-icon-button v-if="!isDuo"
+                         :icon="isReverse ? 'flip-to-front' : 'flip-to-back'"
+                         :title="isReverse ? 'flip to front' : 'flip to back'"
+                         @click.native="reverseCard"></bui-icon-button>
         <bui-icon-button :icon="'sort-' + ((ordering === 'id') ? 'alphabetical' : 'numeric')"
                          @click.native="changeOrder"></bui-icon-button>
         <bui-icon-button :icon="'note' + ((showNote) ? '' : '-outline')"
@@ -26,14 +30,15 @@
                  @close="showRemoveCard = false"
                  :card-id="cardEditedId"></remove-card>
 
-    <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
     <div v-if="deck">
+      <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
       <transition-group name="list" tag="div">
         <card v-for="card in sort(deck.cards)"
               class="list-item"
               :key="card.id"
               :item="card"
-              :mode="cardMode"
+              :duo="isDuo"
+              :reverse="isReverse"
               :show-note="showNote"
               :show-spell="deck && deck.useSpell"
               :front-spell="deck && deck.frontSpell"
@@ -58,7 +63,8 @@ export default {
   computed: {
     ordering () { return this.$store.state.user.prefs.cards.ordering },
     showNote () { return this.$store.state.user.prefs.cards.showNote },
-    cardMode () { return this.$store.state.user.prefs.cards.mode },
+    isDuo () { return this.$store.state.user.prefs.cards.duo },
+    isReverse () { return this.$store.state.user.prefs.cards.reverse },
     loading () { return this.$store.state.decks.loading },
     deck () {
       return this.deckId != null ? _.find(this.$store.state.decks.all, {id: this.deckId}) : {}
@@ -78,11 +84,9 @@ export default {
       'setCurrentDeck',
       'updateCardOrder',
       'toggleCardNote',
-      'updateMode'
+      'toggleMode',
+      'reverseCard'
     ]),
-    changeMode () {
-      this.updateMode((this.cardMode === 'duo') ? 'front' : (this.cardMode === 'front') ? 'back' : 'duo')
-    },
     changeOrder () {
       this.updateCardOrder((this.ordering === 'id') ? 'front' : (this.ordering === 'front') ? 'back' : 'id')
     },

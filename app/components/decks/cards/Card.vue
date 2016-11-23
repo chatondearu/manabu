@@ -3,20 +3,24 @@
     <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="fl-row">
       <p class="first front"
-         v-if="mode !== 'back'">
+         v-if="showFront">
          {{ item.front }}
         <bui-icon-button v-if="showSpell"
                          icon="volume-high" 
           @click.native="spell('front')"></bui-icon-button>
       </p>
       <p class="second back"
-         v-if="mode !== 'front'">
+         v-if="showBack">
          {{ item.back }}
         <bui-icon-button v-if="showSpell"
                          icon="volume-high" 
           @click.native="spell('back')"></bui-icon-button>
       </p>
       <div class="actions">
+        <bui-icon-button v-if="!duo"
+                         :icon="flipped ? 'flip-to-front' : 'flip-to-back'"
+                         :title="flipped ? 'flip to front' : 'flip to back'"
+                         @click.native="flipped = !flipped"></bui-icon-button>
         <bui-icon-button icon="dots-vertical" use-dropdown>
           <bui-menu>
             <bui-menu-item>
@@ -51,11 +55,20 @@ export default {
       required: true,
       default: cardModel
     },
-    mode: String,
+    duo: Boolean,
+    reverse: Boolean,
     showNote: Boolean,
     showSpell: Boolean,
     frontSpell: String,
     backSpell: String
+  },
+  computed: {
+    showFront () {
+      return this.duo || !this.flipped
+    },
+    showBack () {
+      return this.duo || this.flipped
+    }
   },
   methods: {
     spell (strId) {
@@ -81,7 +94,8 @@ export default {
   },
   data () {
     return {
-      deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null
+      deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null,
+      flipped: this.reverse
     }
   }
 }

@@ -7,8 +7,21 @@
         {{ label }}
       </label>
       <div class="bui-input-content">
-        <input v-if="type !== 'textarea'"
-               :type="type" 
+        <input v-if="type === 'text'"
+               type="text"
+               :name="name"
+               :id="name"
+               :placeholder="placeholder"
+               :disabled="disabled"
+               :readonly="readonly"
+               :number="number"
+               :maxlength="maxlength"
+               :minlength="minlength"
+               :autocomplete="autoComplete"
+               v-model="currentValue"
+               ref="input">
+        <input v-if="type === 'password'"
+               type="password"
                :name="name"
                :id="name"
                :placeholder="placeholder"

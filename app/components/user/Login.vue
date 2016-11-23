@@ -41,7 +41,7 @@ export default {
     BuiButton
   },
   watch: {
-    connected (value) {
+    'connected' (value) {
       if (value) {
         this.$router.push({ name: 'home' })
       }

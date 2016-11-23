@@ -80,6 +80,9 @@ const actions = {
   },
   toggleMode ({ commit, state }) {
     commit('CARD_DUO_MODE', !state.prefs.cards.duo)
+    if (state.prefs.cards.duo) {
+      commit('CARD_REVERSE_MODE', false)
+    }
   },
   reverseCard ({ commit, state }) {
     commit('CARD_REVERSE_MODE', !state.prefs.cards.reverse)

@@ -62,6 +62,11 @@ export default {
     frontSpell: String,
     backSpell: String
   },
+  watch: {
+    reverse (value) {
+      this.flipped = value
+    }
+  },
   computed: {
     showFront () {
       return this.duo || !this.flipped
@@ -95,7 +100,7 @@ export default {
   data () {
     return {
       deckId: this.$route.params.deckId != null ? parseInt(this.$route.params.deckId) : null,
-      flipped: this.reverse
+      flipped: this.reverse || false
     }
   }
 }

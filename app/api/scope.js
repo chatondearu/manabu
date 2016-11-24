@@ -72,6 +72,6 @@ export default {
   getTags (cb) {
     setTimeout(() => cb(_.cloneDeep(_tags)), genTimeout())
   },
-  ... notes,
-  ... decks
+  ...notes,
+  ...decks
 }

@@ -1,6 +1,7 @@
 // vuex/store.js
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 // import parts from modules
 import decks from './modules/decks'
 import notes from './modules/notes'
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     tags,
     user
   },
+  plugins: [createPersistedState()],
   strict: true
 })

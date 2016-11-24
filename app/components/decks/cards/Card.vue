@@ -2,20 +2,24 @@
   <div class="card">
     <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="fl-row">
-      <p class="first front"
-         v-if="showFront">
-         {{ item.front }}
-        <bui-icon-button v-if="showSpell"
-                         icon="volume-high" 
-          @click.native="spell('front')"></bui-icon-button>
-      </p>
-      <p class="second back"
+      <div class="first front"
+           v-if="showFront">
+        <p>
+          {{ item.front }}
+          <bui-icon-button v-if="showSpell"
+                           icon="volume-high"
+                           @click.native="spell('front')"></bui-icon-button>
+        </p>
+      </div>
+      <div class="second back"
          v-if="showBack">
-         {{ item.back }}
-        <bui-icon-button v-if="showSpell"
-                         icon="volume-high" 
-          @click.native="spell('back')"></bui-icon-button>
-      </p>
+        <p>
+          {{ item.back }}
+          <bui-icon-button v-if="showSpell"
+                           icon="volume-high"
+                           @click.native="spell('back')"></bui-icon-button>
+        </p>
+      </div>
       <div class="actions">
         <bui-icon-button v-if="!duo"
                          :icon="flipped ? 'flip-to-front' : 'flip-to-back'"
@@ -78,14 +82,14 @@ export default {
   methods: {
     spell (strId) {
       if (strId === 'front' || strId === 'back') {
-        /*global SpeechSynthesisUtterance*/
+        /* global SpeechSynthesisUtterance */
         var msg = new SpeechSynthesisUtterance()
         // var voices = window.speechSynthesis.getVoices()
         // msg.voice = voices[5] // Note: some voices don't support altering params
         msg.text = this.item[strId]
         msg.lang = strId === 'front' ? this.frontSpell : this.backSpell
         msg.rate = 0.8
-        /*global speechSynthesis*/
+        /* global speechSynthesis */
         speechSynthesis.speak(msg)
       }
     }

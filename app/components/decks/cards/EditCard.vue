@@ -6,7 +6,7 @@
       <div slot="actions">
       </div>
     </bui-toolbar>
-    <div class="edit-card">
+    <bui-form class="edit-card">
         <h1 slot="header"></h1>
         <bui-input type="textarea" name="front" v-model="override.front" label="Front"></bui-input>
         <bui-input type="textarea" name="back" v-model="override.back" label="Back"></bui-input>
@@ -16,12 +16,19 @@
           <bui-button @click.native="cancel">Cancel</bui-button>
           <bui-button @click.native="save" type="primary">Save</bui-button>
         </div>
-    </div>
+    </bui-form>
   </bui-frame>
 </template> 
 
 <script>
-import { BuiIcon, BuiButton, BuiInput, BuiFrame, BuiToolbar } from 'components/utils'
+import {
+  BuiIcon,
+  BuiButton,
+  BuiInput,
+  BuiForm,
+  BuiFrame,
+  BuiToolbar
+} from 'components/utils'
 import { mapActions } from 'vuex'
 import { cardModel } from 'app/models/models'
 import _ from 'lodash'
@@ -62,6 +69,7 @@ export default {
     BuiButton,
     BuiIcon,
     BuiInput,
+    BuiForm,
     BuiToolbar,
     BuiFrame
   },

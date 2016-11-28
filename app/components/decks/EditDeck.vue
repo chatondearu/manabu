@@ -6,7 +6,7 @@
       <div slot="actions">
       </div>
     </bui-toolbar>
-    <div class="edit-card">
+    <bui-form class="edit-card">
       <bui-input name="title" v-model="override.title" placeholder="Title"></bui-input>
       <bui-input type="textarea" name="description" v-model="override.description" placeholder="Description" :rows="4"></bui-input>
       <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" placeholder="eg. http://domaine.tls/my-resource.png"></bui-input>
@@ -26,13 +26,22 @@
         <bui-button @click.native="cancel">Cancel</bui-button>
         <bui-button @click.native="save" type="primary">Save</bui-button>
       </div>
-   </div>
+   </bui-form>
   </bui-frame>
 </template> 
 
 <script>
   import _ from 'lodash'
-  import { BuiIcon, BuiButton, BuiInput, BuiSelect, BuiSelectOption, BuiFrame, BuiToolbar } from 'components/utils'
+  import {
+    BuiIcon,
+    BuiButton,
+    BuiInput,
+    BuiSelect,
+    BuiSelectOption,
+    BuiForm,
+    BuiFrame,
+    BuiToolbar
+  } from 'components/utils'
   import { mapActions } from 'vuex'
   import countryCode from 'app/countryCode'
   import { deckModel } from 'app/models/models'
@@ -72,6 +81,7 @@
       BuiSelect,
       BuiSelectOption,
       BuiFrame,
+      BuiForm,
       BuiToolbar
     },
     data () {

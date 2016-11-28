@@ -28,9 +28,6 @@ export const routesMap = [
   {
     path: '/decks/:deckId',
     name: 'deck',
-    meta: {
-      title: 'Deck'
-    },
     component: require('./components/decks/Deck.vue'),
     children: [
       {
@@ -38,7 +35,8 @@ export const routesMap = [
         name: 'cards',
         component: require('./components/decks/cards/List.vue'),
         meta: {
-          title: 'Deck Cards'
+          title: 'Deck',
+          back: true
         }
       },
       {
@@ -47,9 +45,6 @@ export const routesMap = [
         components: {
           default: require('./components/decks/cards/List.vue'),
           frame: require('./components/decks/EditDeck.vue')
-        },
-        meta: {
-          title: 'Deck Editing'
         }
       },
       {
@@ -58,9 +53,6 @@ export const routesMap = [
         components: {
           default: require('./components/decks/cards/List.vue'),
           frame: require('./components/decks/cards/EditCard.vue')
-        },
-        meta: {
-          title: 'Card Editing'
         }
       },
       {
@@ -69,9 +61,6 @@ export const routesMap = [
         components: {
           default: require('./components/decks/cards/List.vue'),
           frame: require('./components/decks/cards/EditCard.vue')
-        },
-        meta: {
-          title: 'Card Adding'
         }
       }
     ]

@@ -61,15 +61,29 @@
       padding: 0 15px;
 
       user-select: none;
+      transition: box-shadow .3s ease, background-color .15s ease;
 
-      &.router-link-active,
-      &.active {
-        border-left: 3px solid $primary-color;
+      .bui-icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+        vertical-align: middle;
       }
 
       &:hover {
         cursor: pointer;
-        background-color: $blue-grey-50;
+        background-color: $palette-grey-50;
+      }
+
+      &.router-link-active,
+      &.active {
+        color: $primary-color;
+        /* border-left: 3px solid $primary-color; */
+        box-shadow: inset 0 0 5px rgba($primary-color, .33);
+
+        &:hover {
+          cursor: initial;
+          background-color: $white;
+        }
       }
     }
   }

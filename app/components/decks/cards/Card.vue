@@ -1,7 +1,9 @@
 <template>
   <div class="card">
-    <bui-resource v-if="item.resourceUrl" :url="item.resourceUrl"></bui-resource>
     <div class="fl-row">
+      <div class="resource" v-if="item.resourceUrl">
+        <bui-resource :url="item.resourceUrl"></bui-resource>
+      </div>
       <div class="first front"
            v-if="showFront">
         <p>
@@ -12,7 +14,7 @@
         </p>
       </div>
       <div class="second back"
-         v-if="showBack">
+           v-if="showBack">
         <p>
           {{ item.back }}
           <bui-icon-button v-if="showSpell"
@@ -116,20 +118,20 @@ export default {
 
 .card {
   width: auto;
-  min-height: 38px;
-  padding: 15px;
   margin: 15px;
 
-  background-color: white;
+  background-color: $white;
   border-radius: 2px;
   @include card(1);
 
   .fl-row {
     @include fl-container(row);
     align-items: center;
+    min-height: 54px;
   }
 
   .first {
+    padding: 15px;
     flex-grow: 2;
     flex-basis: 50%;
     font-size: 1.5em;
@@ -138,6 +140,7 @@ export default {
   }
 
   .second {
+    padding: 15px;
     flex-grow: 2;
     flex-basis: 50%;
     font-size: 1.2em;
@@ -145,13 +148,20 @@ export default {
   }
 
   .actions {
-    flex-grow: 1;
+    /*flex-grow: 1;*/
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    align-items: center;
+    padding: 5px;
+    background-color: $palette-grey-50;
   }
 
   .note {
-    margin-top: 10px;
+    padding: 10px;
     font-size: .8em;
-    color: $blue-grey-300;
+    background-color: $palette-grey-400;
+    color: $white;
   }
 }  
 </style>

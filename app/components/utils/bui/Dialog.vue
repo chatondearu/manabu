@@ -15,38 +15,20 @@
 </template>
 
 <script>
-  // import Popper from 'popper.js'
-
   export default {
     props: {
       show: Boolean
     },
-    // watch: {
-    //   show (val, lastVal) {
-    //     if (val === lastVal) { return }
-    //     if (val) {
-    //       console.log(this.$el, window.document.body)
-    //       // this.$popper = new Popper(window.document.body, this.$el, {
-    //       //   placement: 'top'
-    //       // })
-    //     }
-    //   }
-    // },
     methods: {
       close () {
         this.$emit('hidden::dialog')
       }
     }
-    // data () {
-    //   return {
-    //     $popper: null
-    //   }
-    // }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import '~style/variables.scss';
+  @import '../style/variables.scss';
 
   .bui-dialog-wrapper {
     top: 0px;
@@ -57,7 +39,7 @@
     position: fixed;
     overflow: auto;
     margin: 0px;
-    background-color: rgba($blue-grey-600, .1);
+    background-color: rgba($palette-grey-600, .1);
 
     display: flex;
     flex-direction: row;
@@ -71,8 +53,8 @@
     height: fit-content;
     margin: auto;
     padding: 1em;
-    background: white;
-    color: black;
+    background: $white;
+    color: $dark;
 
     @include card(5);
     // width: 280px;
@@ -111,7 +93,7 @@
 
     .bui-dialog-content {
       padding: 20px 24px 24px 24px;
-      color: rgba(0,0,0, 0.54);
+      color: rgba($dark, 0.33);
     }
   }
 </style>

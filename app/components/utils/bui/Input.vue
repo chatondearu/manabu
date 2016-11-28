@@ -33,7 +33,7 @@
                :autocomplete="autoComplete"
                v-model="currentValue"
                ref="input">
-        <textarea v-else
+        <textarea v-if="type === 'textarea'"
                   :name="name"
                   :id="name"
                   :rows="rows"
@@ -130,7 +130,6 @@
   .bui-input {
     // font-family: $font-stack;
     @include fl-container(column);
-    margin-bottom: 12px;
 
     label {
       width: 100%;

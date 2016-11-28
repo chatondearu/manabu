@@ -21,8 +21,8 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @import '~style/variables.scss';
+<style lang="scss">
+  @import '../style/variables.scss';
 
   .bui-button {
     background: 0 0;
@@ -53,20 +53,20 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $blue-grey-100;
+      background-color: $palette-grey-100;
     }
 
     &.primary {
       background-color: $primary-color;
       color: $white;
       &:hover {
-        background-color: $blue-700;
+        background-color: $primary-color;
       }
     }
 
     &:disabled {
-      background-color: $blue-grey-50;
-      color: $blue-grey-300;
+      background-color: $palette-grey-50;
+      color: $palette-grey-300;
       cursor: not-allowed;
     }
   }

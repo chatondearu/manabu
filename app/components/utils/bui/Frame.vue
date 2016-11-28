@@ -46,7 +46,8 @@
     .bui-frame-container {
       @include flex-fit();
       background-color: $white;
-      max-width: 680px;
+      width: 100%;
+      height: 100%;
       margin: auto;
       max-height: 100%;
       overflow: auto;

@@ -1,7 +1,14 @@
 <template>
   <transition name="nav-expand">
-    <nav class="bui-navigation" v-if="open" v-on-clickaway="close">
-      <icon-button class="bui-navigation-close" v-if="showCloseButton" icon="close" type="clear" @click.native="close"></icon-button>
+    <nav class="bui-navigation"
+         v-if="open"
+         v-on-clickaway="close"
+         :class="{ 'night': night }">
+      <icon-button class="bui-navigation-close"
+                   v-if="showCloseButton"
+                   icon="close"
+                   type="clear"
+                   @click.native="close"></icon-button>
       <slot></slot>
     </nav>
   </transition>
@@ -24,7 +31,8 @@
       showCloseButton: {
         type: Boolean,
         default: true
-      }
+      },
+      night: Boolean
     },
     methods: {
       close (event) {
@@ -47,13 +55,17 @@
 
   .bui-navigation {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     width: 250px;
     background-color: $white;
     top: 0;
     bottom: 0;
     left: 0;
     @include card(3);
+
+    &.night {
+      background-color: $palette-grey-600;
+    }
 
     &.nav-expand-enter-active, &.nav-expand-leave-active {
       transition: left .25s ease;

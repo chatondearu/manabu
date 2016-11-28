@@ -12,6 +12,7 @@ import BuiToolbar from './bui/Toolbar'
 import BuiResource from './bui/Resource'
 import BuiNavigation from './bui/Navigation'
 import BuiFrame from './bui/Frame'
+import BuiForm from './bui/Form'
 
 export {
   BuiButton,
@@ -27,5 +28,6 @@ export {
   BuiResource,
   BuiToolbar,
   BuiNavigation,
-  BuiFrame
+  BuiFrame,
+  BuiForm
 }

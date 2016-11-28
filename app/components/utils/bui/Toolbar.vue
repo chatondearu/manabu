@@ -1,5 +1,5 @@
 <template>
-  <div class="bui-toolbar" :class="[ position ]">
+  <div class="bui-toolbar" :class="[ position, night ? 'night' : '' ]">
     <div class="bui-toolbar-left" v-if="showNavigationIcon || showBrand || title">
       <div class="bui-toolbar-icon" v-if="!showNavigationIcon && showBackIcon">
         <bui-icon-button type="clear"
@@ -44,7 +44,8 @@
       showNavigationIcon: Boolean,
       showBackIcon: Boolean,
       actionsLeft: Boolean,
-      position: String
+      position: String,
+      night: Boolean
     },
     created () {
       const style = document.getElementsByTagName('body')[0].style
@@ -61,26 +62,32 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  // todo change all flex css by mixin or function scss
-  @import '~style/variables.scss';
+<style lang="scss">
+  @import '../style/variables.scss';
+
+  $bui-toolbar-height: 56px;
+  $bui-toolbar-font-size: 1rem;
 
   .bui-toolbar {
     position: relative;
     width: 100%;
-    height: 56px;
+    height: $bui-toolbar-height;
 
     display: flex;
     align-items: center;
 
     background-color: $white;
-    font-size: 18px;
+    font-size: $bui-toolbar-font-size;
 
     & > div {
       display: flex;
       align-items: center;
       /*flex-shrink: 0;*/
       margin-left: 5px;
+    }
+
+    &.night {
+      background-color: $palette-grey-500;
     }
 
     .bui-toolbar-center {
@@ -107,6 +114,7 @@
     .bui-toolbar-right {
       flex-grow: 1;
       margin-right: 5px;
+
       .actions {
         margin-left: auto;
 
@@ -127,6 +135,10 @@
       position: fixed;
       z-index: 1;
       bottom: 0;
+    }
+
+    .bui-icon-button {
+      margin-right: 5px;
     }
   }
 </style>

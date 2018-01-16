@@ -10,7 +10,7 @@
         <h1 slot="header"></h1>
         <bui-input type="textarea" name="front" v-model="override.front" label="Front"></bui-input>
         <bui-input type="textarea" name="back" v-model="override.back" label="Back"></bui-input>
-        <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" placeholder="eg. http://domaine.tls/my-resource.png"></bui-input>
+        <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" help="eg. http://domaine.tls/my-resource.png"></bui-input>
         <bui-input type="textarea" rows="4" name="note" v-model="override.note" label="Add a Note" :multi-line="true" :rows="3"></bui-input>
         <div>
           <bui-button @click.native="cancel">Cancel</bui-button>
@@ -20,7 +20,7 @@
   </bui-frame>
 </template> 
 
-<script>
+<script type="javascript">
 import {
   BuiIcon,
   BuiButton,
@@ -28,7 +28,7 @@ import {
   BuiForm,
   BuiFrame,
   BuiToolbar
-} from 'components/utils'
+} from 'utils'
 import { mapActions } from 'vuex'
 import { cardModel } from 'app/models/models'
 import _ from 'lodash'

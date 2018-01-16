@@ -3,7 +3,8 @@
     "Slim/Slim": "^3.5",
     "php": ">=5.5.0",
     "monolog/monolog": "1.*",
-    "illuminate/database": "*"
+    "illuminate/database": "*",
+    "lcobucci/jwt": "^3.2"
   },
   "autoload": {
     "psr-0": {

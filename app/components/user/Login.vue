@@ -6,33 +6,36 @@
           <img src="~assets/manabu-logo-inline.png">
         </figure>
       </p>
-      <validator name="login">
+      <validation name="login">
         <form novalidate @submit.prevent.stop>
-          <bui-input name="username"
-                     v-model="username"
-                     v-validate.username="['required']"
-                     placeholder="Username"></bui-input>
-          <bui-input type="password"
-                     name="password"
-                     v-model="password"
-                     v-validate.password="['required']"
-                     placeholder="Password"></bui-input>
+          <validity field="username" :validators="['required']">
+            <bui-input name="username"
+                       v-model="username"
+                       placeholder="Username"></bui-input>
+          </validity>
+          <validity field="password" :validators="['required']">
+            <bui-input type="password"
+                       name="password"
+                       v-model="password"
+                       placeholder="Password"></bui-input>
+          </validity>
           <p class="text-right">
+            <!--
+                        :disabled="$login.invalid"-->
             <bui-button type="primary"
-                        :disabled="$login.invalid"
                         @click.native="send">Submit</bui-button>
           </p>
         </form>
-      </validator>
+      </validation>
     </div>
   </div>
 </template>
 
-<script>
+<script type="javascript">
 import {
   BuiInput,
   BuiButton
-} from 'app/components/utils'
+} from 'utils'
 import { mapActions } from 'vuex'
 
 export default {
@@ -53,7 +56,7 @@ export default {
     ]),
     send () {
       if (
-        this.valid
+        this.$validation.login.valid
       ) {
         this.login(this.username, this.password)
       }

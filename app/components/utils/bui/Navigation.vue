@@ -14,7 +14,7 @@
   </transition>
 </template>
 
-<script>
+<script type="javascript">
   import { parentHasClass } from 'app/components/utils/functions'
   import IconButton from './IconButton'
   import { mixin as ClickAway } from 'vue-clickaway'

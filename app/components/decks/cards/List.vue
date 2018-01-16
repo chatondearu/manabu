@@ -64,7 +64,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import _ from 'lodash'
   import {
     BuiLoader,
@@ -73,7 +73,7 @@
     BuiMenuItem,
     BuiToolbar,
     BuiInput
-  } from 'components/utils'
+  } from 'utils'
   import Card from './Card'
   import RemoveCard from './RemoveCard'
   import { mapActions } from 'vuex'

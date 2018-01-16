@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
 export default {
   components: {
   }

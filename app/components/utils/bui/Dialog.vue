@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   export default {
     props: {
       show: Boolean

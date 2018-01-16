@@ -10,10 +10,10 @@
 
     <p class="loading text-center" v-if="loading"><bui-loader></bui-loader></p>
     <transition-group name="list">
-      <deck-card v-for="deck in decks" 
-                 :key="deck.id" 
+      <deck-card v-for="deck in decks"
+                 :key="deck.id"
                  class="list-item"
-                 :item="deck" 
+                 :item="deck"
                  @select="navigate"></deck-card>
     </transition-group>
 
@@ -21,9 +21,8 @@
   </div>
 </template>
 
-<script>
-  import _ from 'lodash'
-  import { BuiIconButton, BuiLoader } from 'components/utils'
+<script type="javascript">
+  import { BuiIconButton, BuiLoader } from 'utils'
   import DeckCard from './DeckCard'
   import { mapActions } from 'vuex'
 
@@ -44,7 +43,7 @@
         'getAllTags'
       ]),
       navigate (id) {
-        if (_.isNumber(id) && id >= 0) {
+        if (id != null) {
           this.$router.push({
             name: 'cards',
             params: {

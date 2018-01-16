@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   export default {
     name: 'bui-icon',
     props: {

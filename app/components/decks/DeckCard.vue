@@ -14,8 +14,8 @@
   </div>
 </template>
 
-<script>
-import { BuiIcon } from 'components/utils'
+<script type="javascript">
+import { BuiIcon } from 'utils'
 import Tag from './tags/Tag'
 
 export default {

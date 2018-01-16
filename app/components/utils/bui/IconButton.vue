@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import Popper from 'popper.js'
   import { mixin as ClickAway } from 'vue-clickaway'
   import Icon from './Icon'

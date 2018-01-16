@@ -1,4 +1,4 @@
-<script>
+<script type="javascript">
   import _ from 'lodash'
   import Icon from './Icon'
 

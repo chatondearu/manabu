@@ -21,6 +21,8 @@
         </router-link>
         <bui-button disabled>Stats</bui-button>
       </div>
+
+      <bui-input name="search" label="Search in my cards" clear></bui-input>
     </header>
 
     <bui-dialog v-if="showRemoveDeck" :show="showRemoveDeck">
@@ -36,7 +38,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import _ from 'lodash'
   import { mapActions } from 'vuex'
   import {
@@ -44,9 +46,10 @@
     BuiMenuItem,
     BuiButton,
     BuiToolbar,
+    BuiInput,
     BuiIconButton,
     BuiDialog
-  } from 'components/utils'
+  } from 'utils'
 
   export default {
     name: 'deck',
@@ -76,7 +79,8 @@
       BuiMenuItem,
       BuiButton,
       BuiToolbar,
-      BuiIconButton
+      BuiIconButton,
+      BuiInput
     },
     data () {
       return {

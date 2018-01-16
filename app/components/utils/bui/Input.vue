@@ -1,56 +1,59 @@
 <template>
   <div class="bui-input"
-       :class="{ 'inline': inline }">
-      <label v-if="label"
-             :for="name"
-             class="bui-input-label">
-        {{ label }}
-      </label>
-      <div class="bui-input-content">
-        <input v-if="type === 'text'"
-               type="text"
-               :name="name"
-               :id="name"
-               :placeholder="placeholder"
-               :disabled="disabled"
-               :readonly="readonly"
-               :number="number"
-               :maxlength="maxlength"
-               :minlength="minlength"
-               :autocomplete="autoComplete"
-               v-model="currentValue"
-               ref="input">
-        <input v-if="type === 'password'"
-               type="password"
-               :name="name"
-               :id="name"
-               :placeholder="placeholder"
-               :disabled="disabled"
-               :readonly="readonly"
-               :number="number"
-               :maxlength="maxlength"
-               :minlength="minlength"
-               :autocomplete="autoComplete"
-               v-model="currentValue"
-               ref="input">
-        <textarea v-if="type === 'textarea'"
-                  :name="name"
-                  :id="name"
-                  :rows="rows"
-                  :placeholder="placeholder"
-                  :disabled="disabled"
-                  :readonly="readonly"
-                  :number="number"
-                  :maxlength="maxlength"
-                  :minlength="minlength"
-                  :autocomplete="autoComplete"
-                  v-model="currentValue"
-                  ref="input"></textarea>
-      </div>
+       :class="{ 'inline': inline, 'clear': clear }">
+    <label v-if="label"
+           :for="name"
+           class="bui-input-label">
+      {{ label }}
+    </label>
+    <div class="bui-input-content">
+      <input v-if="type === 'text'"
+             type="text"
+             :name="name"
+             :id="name"
+             :placeholder="placeholder"
+             :disabled="disabled"
+             :readonly="readonly"
+             :number="number"
+             :maxlength="maxlength"
+             :minlength="minlength"
+             :autocomplete="autoComplete"
+             v-model="currentValue"
+             ref="input">
+      <input v-if="type === 'password'"
+             type="password"
+             :name="name"
+             :id="name"
+             :placeholder="placeholder"
+             :disabled="disabled"
+             :readonly="readonly"
+             :number="number"
+             :maxlength="maxlength"
+             :minlength="minlength"
+             :autocomplete="autoComplete"
+             v-model="currentValue"
+             ref="input">
+      <textarea v-if="type === 'textarea'"
+                :name="name"
+                :id="name"
+                :rows="rows"
+                :placeholder="placeholder"
+                :disabled="disabled"
+                :readonly="readonly"
+                :number="number"
+                :maxlength="maxlength"
+                :minlength="minlength"
+                :autocomplete="autoComplete"
+                v-model="currentValue"
+                ref="input"></textarea>
+    </div>
+    <div class="bui-input-help" v-if="help">
+      {{ help }}
+    </div>
   </div>
 </template>
 
-<script>
+<script type="javascript">
   export default {
     props: {
       value: [String, Number],
@@ -58,6 +61,8 @@
         type: String,
         default: ''
       },
+      help: String,
+      clear: Boolean,
       placeholder: {
         type: String,
         default: ''
@@ -66,18 +71,12 @@
         type: String,
         default: ''
       },
-      readonly: {
-        type: Boolean,
-        default: false
-      },
+      readonly: Boolean,
       // icon: {
       //   type: String,
       //   default: ''
       // },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
+      disabled: Boolean,
       type: {
         type: String,
         default: 'text'
@@ -86,10 +85,7 @@
         type: String,
         default: ''
       },
-      number: {
-        type: Boolean,
-        default: false
-      },
+      number: Boolean,
       // autosize: {
       //   type: [Boolean, Object],
       //   default: false
@@ -179,6 +175,11 @@
         padding: 5px 7px;
       }
     }
+    .bui-input-help {
+      color: $palette-grey-200;
+      font-weight: 300;
+      padding-top: 3px;
+    }
 
     &.inline {
       display: inline-flex;
@@ -188,6 +189,21 @@
         input[type="number"],
         textarea {
           display: inline-block;
+        }
+      }
+    }
+
+    &.clear {
+      .bui-input-label {
+        color: $white;
+      }
+      .bui-input-content {
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        textarea {
+          background: rgba($white, 0.1);
+          color: $white;
         }
       }
     }

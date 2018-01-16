@@ -5,7 +5,7 @@
   </button>
 </template>
 
-<script>
+<script type="javascript">
   import Icon from './Icon'
 
   export default {

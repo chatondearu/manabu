@@ -13,8 +13,12 @@
   </div>
 </template> 
 
-<script>
-import { BuiIcon, BuiDialog, BuiButton } from 'components/utils'
+<script type="javascript">
+import {
+  BuiIcon,
+  BuiDialog,
+  BuiButton
+} from 'utils'
 import { mapActions } from 'vuex'
 import { cardModel } from 'app/models/models'
 import _ from 'lodash'

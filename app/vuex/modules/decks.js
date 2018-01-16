@@ -25,7 +25,9 @@ const mutations = {
   },
   [RECEIVE_DECKS] (state, decks) {
     state.loading = false
-    state.all = decks
+    if (decks && _.isArray(decks)) {
+      state.all = decks
+    }
   },
   [RECEIVE_CARDS] (state, payload) {
     state.loading = false

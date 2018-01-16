@@ -7,9 +7,9 @@
       </div>
     </bui-toolbar>
     <bui-form class="edit-card">
-      <bui-input name="title" v-model="override.title" placeholder="Title"></bui-input>
-      <bui-input type="textarea" name="description" v-model="override.description" placeholder="Description" :rows="4"></bui-input>
-      <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" placeholder="eg. http://domaine.tls/my-resource.png"></bui-input>
+      <bui-input name="title" v-model="override.title" label="Title"></bui-input>
+      <bui-input type="textarea" name="description" v-model="override.description" label="Description" :rows="4"></bui-input>
+      <bui-input name="resource" v-model="override.resourceUrl" label="Resource URL" help="eg. http://domaine.tls/my-resource.png"></bui-input>
       <label>
         Use Spelling
         <input type="checkbox" name="use_spell" v-model="override.useSpell">
@@ -30,7 +30,7 @@
   </bui-frame>
 </template> 
 
-<script>
+<script type="javascript">
   import _ from 'lodash'
   import {
     BuiIcon,
@@ -41,7 +41,7 @@
     BuiForm,
     BuiFrame,
     BuiToolbar
-  } from 'components/utils'
+  } from 'utils'
   import { mapActions } from 'vuex'
   import countryCode from 'app/countryCode'
   import { deckModel } from 'app/models/models'

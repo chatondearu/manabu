@@ -4,6 +4,7 @@ export const cardModel = () => {
     back: null,
     front: null,
     note: null,
+    order: 0,
     resourceUrl: null,
     deckId: null,
     icon: null,

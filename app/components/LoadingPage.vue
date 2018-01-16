@@ -37,6 +37,7 @@
                  values="175.7 75.30000000000001;1 250;175.7 75.30000000000001"></animate>
       </circle>
     </svg>
+    <h1>{{ message }}</h1>
   </div>
 </template>
 
@@ -44,22 +45,42 @@
   @import '~style/variables.scss';
 
   .loading-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
     position: fixed;
+    z-index: 999;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
 
     background-color: $palette-grey-600;
+
+    h1 {
+      color: $white;
+    }
   }
 </style>
 
-<script>
+<script type="javascript">
+  import { mapActions } from 'vuex'
+
   export default {
+    computed: {
+      message () { return this.$store.state.storage.loadingMessage }
+    },
+    methods: {
+      ...mapActions([
+        'getAll'
+      ])
+    },
+    created () {
+      this.getAll()
+    },
     data () {
-      return {
-        msg: 'hello vue'
-      }
+      return {}
     }
   }
 </script>

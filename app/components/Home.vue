@@ -11,8 +11,8 @@
   </div>
 </template>
 
-<script>
-import { BuiIcon } from 'components/utils'
+<script type="javascript">
+import { BuiIcon } from 'utils'
 
 export default {
   name: 'home',

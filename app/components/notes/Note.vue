@@ -4,9 +4,9 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   // import _ from 'lodash'
-  import { BuiIcon } from 'app/components/utils'
+  import { BuiIcon } from 'utils'
 
   export default {
     name: 'note',

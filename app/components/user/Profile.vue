@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
 // import { UiProgressCircular } from 'keen-ui'
 // import { getCards } from 'app/vuex/actions'
 

@@ -4,7 +4,7 @@
   </option>
 </template>
 
-<script>
+<script type="javascript">
   export default {
     name: 'bui-select-option'
   }

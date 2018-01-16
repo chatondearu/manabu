@@ -51,10 +51,11 @@
     </bui-navigation>
 
     <router-view class="view"></router-view>
+    <loading-page v-if="loading"></loading-page>
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import is from 'is_js'
   import _ from 'lodash'
   import {
@@ -64,7 +65,7 @@
     BuiMenuItem,
     BuiToolbar,
     BuiNavigation
-  } from 'app/components/utils'
+  } from 'utils'
   import store from './vuex/store'
 
   import LoadingPage from 'app/components/LoadingPage'
@@ -82,6 +83,7 @@
     },
     store,
     created () {
+      console.log(this)
       // sync all data from API/LocalStorage with the store.
       this.isOffline = !is.online()
       this.updateState()
@@ -101,6 +103,7 @@
       }
     },
     computed: {
+      loading () { return this.$store.state.storage.loading },
       desktopMode () {
         return this.isDesktop && this.screenSize > 900
       }

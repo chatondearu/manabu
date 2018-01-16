@@ -10,6 +10,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb()
     })
   },
   addDeck (newDeck, cb) {
@@ -25,6 +26,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb()
     })
   },
   updateDeck (overrideDeck, cb) {
@@ -40,6 +42,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   },
   deleteDeck (deletedDeck, cb) {
@@ -48,6 +51,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   },
   addCard (newCard, deckId, cb) {
@@ -62,6 +66,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   },
   updateCard (overrideCard, cb) {
@@ -76,6 +81,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   },
   deleteCard (deletedCard, cb) {
@@ -84,6 +90,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   },
   getCards (deckId, cb) {
@@ -92,6 +99,7 @@ export default {
       cb(resp.data)
     }, (resp) => {
       trackAPI(resp)
+      cb(resp)
     })
   }
 }

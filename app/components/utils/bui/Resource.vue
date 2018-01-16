@@ -1,13 +1,14 @@
 <template>
-  <div class="resource">
+  <div class="bui-resource">
     <img v-if="type === 'img'" :src="url">
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import _ from 'lodash'
 
   export default {
+    name: 'bui-resource',
     props: {
       url: {
         required: false,
@@ -34,7 +35,12 @@
 </script>
 
 <style lang="scss" scoped>
-  .resource {
-
+  .bui-resource {
+    box-sizing: border-box;
+    display: flex;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 </style>

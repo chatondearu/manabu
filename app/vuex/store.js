@@ -7,6 +7,7 @@ import decks from './modules/decks'
 import notes from './modules/notes'
 import tags from './modules/tags'
 import user from './modules/user'
+import storage from './modules/storage'
 
 Vue.use(Vuex)
 Vue.config.debug = true
@@ -16,7 +17,8 @@ export default new Vuex.Store({
     decks,
     notes,
     tags,
-    user
+    user,
+    storage
   },
   plugins: [createPersistedState()],
   strict: true

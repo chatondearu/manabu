@@ -50,8 +50,14 @@
   </div>
 </template> 
 
-<script>
-import { BuiIcon, BuiMenu, BuiMenuItem, BuiResource, BuiIconButton } from 'components/utils'
+<script type="javascript">
+import {
+  BuiIcon,
+  BuiMenu,
+  BuiMenuItem,
+  BuiResource,
+  BuiIconButton
+} from 'utils'
 import { cardModel } from 'app/models/models'
 
 export default {
@@ -136,7 +142,10 @@ export default {
     flex-basis: 50%;
     font-size: 1.5em;
     color: $dark;
-    border-right: 1px solid $blue-grey-50;
+
+    & + .second {
+      border-left: 1px solid $blue-grey-50;
+    }
   }
 
   .second {

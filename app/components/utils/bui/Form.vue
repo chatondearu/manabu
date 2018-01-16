@@ -14,6 +14,6 @@
   }
 </style>
 
-<script>
+<script type="javascript">
   export default {}
 </script>

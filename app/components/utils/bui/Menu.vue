@@ -1,4 +1,4 @@
-<script>
+<script type="javascript">
   export default {
     props: {
       flat: Boolean

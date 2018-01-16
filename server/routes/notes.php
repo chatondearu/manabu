@@ -1,7 +1,7 @@
 <?php
 
 $this->group('/notes', function () {
-    $this->get('', function () {
+    $this->get('', function ($request, $response) {
         $notes = Controllers\Notes::getAll();
         $json = Controllers\Notes::toJson($notes);
         return $response->withStatus(200)->getBody()->write($notes);

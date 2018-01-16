@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script>
+<script type="javascript">
   import BuiIconButton from './IconButton'
 
   export default {
